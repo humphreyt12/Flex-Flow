@@ -1,4 +1,6 @@
 # Flex-Flow
 
-## De
+## Table of Contents
+
+## Description 
 A workout manger application 
