@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Flow Workout Manager</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="w-full h-screen"> 
+
+    <!-- Container -->
+   
+            <nav class="">
+        <span class="top-0 left-0 flex h-14">
+            <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class=" w-100">
+        </span>
+    </nav>
+    <form class="space-y-4">
+        <!-- Welcome Text -->
+        <div class="relative flex flex-col items-center justify-center mt-14 mb-16">
+            <ul class="text-5xl text-center font-bold mb-4"><li>Welcome Back</li> <li class="text-5xl font-medium">Our Gym Member!</li></ul>
+          <ul><p class=" text-1xl text-gray-600"><li class="text-center mb-6">Log in to your account to access your personalized fitness journey.</li>
+            <li>If you don't have an account feel free to click Create account to sign up Welcome!</li></p></ul>
+            
+
+        </div>
+
+        <!-- Form -->
+       
+            <!-- Username Input -->
+            <div class="flex flex-col items-center w-full justify-center">
+            <div class="relative">
+                <input type="text" id="username" class="login-input form-input block text-center  px-36 py-4 rounded-full border border-gray-300" placeholder="Username">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-500 sm:text-sm" aria-hidden="true">
+                        <!-- Username Icon -->
+                    </span>
+                </div>
+            </div>
+        </div>
+
+            <!-- Password Input -->
+            <div class="flex flex-col items-center">
+            <div class="relative">
+                <input type="password" id="password" class="login-input form-input block text-center w-full px-36 py-4 rounded-full border border-gray-300" placeholder="Password">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-500 sm:text-sm" aria-hidden="true">
+                        <!-- Password Icon -->
+                    </span>
+                </div>
+            </div>
+
+            <!-- Login Button -->
+            <div class="flex flex-col items-center">
+            <button type="submit" class="transation hover:ease-out shadow-lg drop-shadow-2xl shadow-blue-600 mt-12 w-full flex justify-center py-4 px-4 border text-sm font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700">
+                Login
+            </button>
+        </form>
+
+        <!-- Footer Links -->
+        
+        <div class="flex items-center space-x-72 mt-14 justify-center">
+            <a href="/signup" class="text-blue-600 hover:text-blue-800 transition duration-300">Create Account</a>
+            <a href="/help" class="text-blue-600 hover:text-blue-800 transition duration-300">Need Help?</a>
+        </div>
+    </div>
+    <script src="/js/login.js"></script>
+</body>
+</html>
