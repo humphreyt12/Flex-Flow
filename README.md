@@ -21,7 +21,7 @@ Click the Heroku app link to view the application's website.
 As a user I want a simple and easy to use app to log my workouts so I can keep track of my progress as I get stronger.
 
 ## Installation
-
+npm i
 
 ## Usage 
 
