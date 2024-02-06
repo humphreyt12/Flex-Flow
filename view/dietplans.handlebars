@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Plan Suggestions</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Include Handlebars from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+</head>
+<body class="w-full h-screen" style="background-image: url('assets/background image for login page.svg'); background-size: cover; background-position: center;">
+
+    <!-- Navigation -->
+       <nav class="shadow-md flex justify-between items-center py-1 px-6">
+        <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class="h-12">
+        <!-- Dynamic navigation buttons -->
+        <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white animate-bounce bg-gradient-to-r from-blue-600 to-black hover:from-black hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-base top-0 px-12 mr-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+            </svg>
+        </button>
+        <!-- Dropdown content -->
+        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                {{#each navLinks}}
+                    <li>
+                        <a href="{{this.link}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{this.text}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container for Diet Plan Suggestions -->
+    <div class="container mx-auto p-2 text-center">
+        <h2 class="text-4xl font-semibold text-black">Diet Plan Suggestions</h2>
+        <p class="text-xl text-gray-700 font-semibold underline mt-5">Click a diet plan to watch a helpful video on how to start your selected diet.</p>
+        
+        <!-- Handlebars Template for Displaying Diet Plans as Buttons -->
+        <script id="diet-plan-template" type="text/x-handlebars-template">
+            <div class="grid grid-cols-1 gap-6 justify-items-center mt-6">
+                {{#each diets}}
+                <button class="w-96 h-12 mb-4 p-2 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600  hover:from-red-700 hover:to-blue-800 text-white font-bold" data-url="{{url}}">
+                    {{name}}
+                </button>
+                {{/each}}
+            </div>
+        </script>
+        
+        <div id="dietPlansList">
+            <!-- Diet plans will be inserted here by Handlebars -->
+        </div>
+    </div>
+
+    <!-- JavaScript to handle Handlebars template rendering and button redirection -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Define your diet plan data including URLs for each plan
+            var dietData = {
+                diets: [
+                    {name: "Low-Carb", url: "https://www.youtube.com/watch?v=ajWqRd3Ns7w"},
+                    {name: "Vegan", url: "https://www.youtube.com/watch?v=dp2USdjfpzE"},
+                    {name: "Mediterranean", url: "https://www.youtube.com/watch?v=AjAYl4K-Enw"},
+                    {name: "Keto", url: "https://www.youtube.com/watch?v=vzkWOF6_-Ag"},
+                    {name: "Carnivore", url: "https://www.youtube.com/watch?v=wc-1kPpJEq8"},
+                    {name: "Sirtfood", url: "https://www.youtube.com/watch?v=OBurYDaiEho"}
+                ]
+            };
+
+            var templateScript = Handlebars.compile(document.getElementById("diet-plan-template").innerHTML);
+            var html = templateScript(dietData);
+            document.getElementById("dietPlansList").innerHTML = html;
+
+            // Event delegation to handle clicks on diet plan buttons
+            document.getElementById("dietPlansList").addEventListener("click", function(e) {
+                if (e.target && e.target.nodeName == "BUTTON") {
+                    var url = e.target.getAttribute("data-url");
+                    if (url) {
+                        // Redirect user to the URL
+                        window.location.href = url;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
