@@ -1,13 +1,6 @@
 # Flex-Flow
 
 ## Table of Contents
- * [Description](#Description)
- * [Website-Link](#Website-Link)
- * [User-Story](#User-Story)
- * [Installation](#Installation)
- * [Usage](#Usage)
- * [Collaboration](#Collaboration)
- * [License](#License)
 
 ## Description 
 A workout manager that allows users to create their workout plan & diet
