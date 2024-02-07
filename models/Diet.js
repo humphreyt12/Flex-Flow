@@ -11,19 +11,33 @@ Diet.init (
             primaryKey: true,
             autoIncrement: true,
          },
-         diet_name: {
+         mealName: {
             type: DataTypes.STRING,
             allowNull: false,
          },
-         recipe_name: {
+         mealDescription: {
             type: DataTypes.STRING,
+         
          },
-         meal_type: {
-            type: DataTypes.STRING,
-         },
-         calories: {
+         mealDate: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+           },
+            mealTime: {
+               type: DataTypes.DATE,
+               allowNull: false,
+               defaultValue: DataTypes.NOW,
+           },
+           user_id: {
             type: DataTypes.INTEGER,
+            references: {
+              model: 'user',
+              key: 'id',
+            },
          },
+      },
+   {
          sequelize,
          timestamps: false,
          freezeTableName: true,

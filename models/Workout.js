@@ -10,28 +10,35 @@ Workout.init(
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-     },
-     workout_name: {
+      },
+      workout: {
         type: DataTypes.STRING,
-        allowNull: false,
+      },
+     date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
      },
-     time_line: {
-        type: DataTypes.INTEGER, 
+      time: {
+         type: DataTypes.DATE,
+         allowNull: false,
+         defaultValue: DataTypes.NOW,
      },
-     warm_up: {
-        type: DataTypes.STRING,
-        validate: {
-            isWarm_Up: true,
-        },
+   user_id: {
+     type: DataTypes.INTEGER,
+     references: {
+       model: 'user',
+       key: 'id',
      },
-     cool_down: {
-        type: DataTypes.STRING,
-     },
+   },
+},
+   {
      sequelize,
      timestamps: false,
      freezeTableName: true,
      underscored: true,
      modelName: 'workout',
+   
     }, 
 );
 

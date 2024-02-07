@@ -40,7 +40,7 @@
                 <input type="date" class="form-input border  mt-2  col-start-2 col-span-2 px-9 py-3 rounded" placeholder="Select Date">
                 <input type="time" class="form-input border mt-2  col-start-4 col-span-2 px-9 py-3 rounded" placeholder="Select Time">
                 <input type="text" class="form-input border col-start-2 col-span-4 mt-2  hover:bg-gray-200 focus:bg-white 
-                  px-5 py-3 rounded" placeholder="Workout Description">
+                  px-5 py-3 rounded" placeholder="Enter Your Workout">
                 <button type="submit" class="bg-blue-700  hover:from-black hover:to-blue-800 mt-2 col-start-3 col-span-2 py-3 justify-center text-white px-6 rounded ">Schedule Workout</button>
             </form>
         </div>
@@ -60,7 +60,7 @@
         <ul id="scheduledWorkoutsList" class="mt-4">
             {{#each scheduledWorkouts}}
                 <li class="text-gray-600">
-                    <div>Description: {{this.description}}</div>
+                    <div>Workout: {{this.workout}}</div>
                     <div>Date: {{this.date}}</div>
                     <div>Time: {{this.time}}</div>
                 </li>
