@@ -15,7 +15,8 @@ Diet.init (
             type: DataTypes.STRING,
             allowNull: false,
          },
-         mealDescription: {
+
+         recipe: {
             type: DataTypes.STRING,
          
          },

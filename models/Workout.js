@@ -19,20 +19,21 @@ Workout.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
      },
-      time: {
-         type: DataTypes.DATE,
-         allowNull: false,
-         defaultValue: DataTypes.NOW,
+
+     schedule: {
+        type: DataTypes.INTEGER, 
      },
-   user_id: {
-     type: DataTypes.INTEGER,
-     references: {
-       model: 'user',
-       key: 'id',
-     },
-   },
-},
-   {
+     date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+
+ 
+
      sequelize,
      timestamps: false,
      freezeTableName: true,
