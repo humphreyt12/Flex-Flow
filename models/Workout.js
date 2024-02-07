@@ -15,18 +15,19 @@ Workout.init(
         type: DataTypes.STRING,
         allowNull: false,
      },
-     time_line: {
+     schedule: {
         type: DataTypes.INTEGER, 
      },
-     warm_up: {
-        type: DataTypes.STRING,
-        validate: {
-            isWarm_Up: true,
-        },
-     },
-     cool_down: {
-        type: DataTypes.STRING,
-     },
+     date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+
+ 
      sequelize,
      timestamps: false,
      freezeTableName: true,
