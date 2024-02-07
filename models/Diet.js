@@ -10,40 +10,41 @@ Diet.init (
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
-         },
-         mealName: {
+        },
+        mealName: {
             type: DataTypes.STRING,
             allowNull: false,
-         },
-
-         recipe: {
+        },
+        recipe: {
+            type: DataTypes.STRING, // Included from both branches
+        },
+        meal_type: { // Included from main
             type: DataTypes.STRING,
-         
-         },
-         mealDate: {
+        },
+        mealDate: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW,
-           },
-            mealTime: {
-               type: DataTypes.DATE,
-               allowNull: false,
-               defaultValue: DataTypes.NOW,
-           },
-           user_id: {
+        },
+        mealTime: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
+        user_id: {
             type: DataTypes.INTEGER,
             references: {
               model: 'user',
               key: 'id',
             },
-         },
-      },
-   {
-         sequelize,
-         timestamps: false,
-         freezeTableName: true,
-         underscored: true,
-         modelName: 'diet',
+        },
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'diet',
     },
 );
 
