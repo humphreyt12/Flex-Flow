@@ -10,16 +10,11 @@ Workout.init(
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-      },
-      workout: {
-        type: DataTypes.STRING,
-      },
-     date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
      },
-
+     workout_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+     },
      schedule: {
         type: DataTypes.INTEGER, 
      },
@@ -33,13 +28,11 @@ Workout.init(
     },
 
  
-
      sequelize,
      timestamps: false,
      freezeTableName: true,
      underscored: true,
      modelName: 'workout',
-   
     }, 
 );
 

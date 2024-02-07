@@ -1,5 +1,4 @@
 const router = require('express').Router();
-
 const { Diet, User, Workout } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -16,7 +15,7 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const workouts = workoutData.map((workout) => workout.get({ plain: true }));
+    const workout = workoutData.map((workout) => workout.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
@@ -49,7 +48,6 @@ router.get('/workout/:id', async (req, res) => {
     });
 
     const workout = workoutData.get({ plain: true });
-
     //Creating the workouts 
     res.render('workout', {
       ...workout,
@@ -90,8 +88,7 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
-
-//If the user does not have a login, redirect the page for the user to signup
+//If the user dose not have a login, redirect the page for the user to signup
 router.get('/signUp', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/dashboard');
