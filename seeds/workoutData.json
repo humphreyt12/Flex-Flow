@@ -1,0 +1,9 @@
+[
+    {
+        "workout_name": "Test Workout",
+        "description": "Test",
+        "schedule": 1,
+        "date_created": "MM/DD/YYYY"
+
+    }
+]
