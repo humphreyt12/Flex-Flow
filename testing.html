@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout Scheduler and Progress Tracker</title>
+    <title>Diet Plans</title>
     <!-- Include Tailwind CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Include Handlebars from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
 </head>
 <body class="w-full h-screen" style="background-image: url('assets/background image for login page.svg'); background-size: cover; background-position: center;">
 
@@ -30,48 +32,48 @@
         </div>
     </nav>
 
-    <!-- Main Container -->
-    <div class="container justify-center mx-auto p-4">
-        <!-- Workout Scheduler -->
-        <div class="my-2 text-center ">
-            <h2 class="text-4xl font-semibold text-gray-800">Schedule Your Workouts</h2>
-            <p class="text-gray-600 mt-2">Click calender and clock icons.</p>
-            <form id="scheduleForm" class="grid gap-x-4 container px-96 justify-center grid-cols-6 ">
-                <input type="date" class="form-input border  mt-2  col-start-2 col-span-2 px-9 py-3 rounded" placeholder="Select Date">
-                <input type="time" class="form-input border mt-2  col-start-4 col-span-2 px-9 py-3 rounded" placeholder="Select Time">
-                <input type="text" class="form-input border col-start-2 col-span-4 mt-2  hover:bg-gray-200 focus:bg-white 
-                  px-5 py-3 rounded" placeholder="Workout Description">
-                <button type="submit" class="bg-blue-700  hover:from-black hover:to-blue-800 mt-2 col-start-3 col-span-2 py-3 justify-center text-white px-6 rounded ">Schedule Workout</button>
+    <!-- Main Container for Diet Plan Creation and Listing -->
+    <div class="container mx-auto p-4 text-center">
+        <!-- Diet Plan Creation Form -->
+        <div class="my-2">
+            <h2 class="text-4xl font-semibold text-gray-800">Create Your Diet Plan</h2>
+            <form id="dietPlanForm" class="container px-96 space-y-4 mt-4">
+                <div>
+                    <input type="text" id="mealName" class="form-input hover:bg-gray-100 focus:bg-white border px-4 py-2 rounded w-full" placeholder="Meal Name">
+                </div>
+                <div>
+                    <textarea id="mealDescription" class="form-input hover:bg-gray-100 focus:bg-white border px-4 py-2 rounded w-full" placeholder="Meal Description and Calories"></textarea>
+                    <p class="text-gray-700 mt-3">Click calendar and clock icons.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <input type="date" id="mealDate" class="form-input border px-4 py-2 col-start-2 rounded w-full" placeholder="Select Date">
+                    <input type="time" id="mealTime" class="form-input border px-4 py-2 col-start-3 rounded w-full" placeholder="Select Time">
+                </div>
+                <button type="submit" class="bg-gradient-to-r from-black to-blue-600 text-white px-6 py-2 rounded hover:from-blue-600 hover:to-black w-60">Add Meal</button>
             </form>
         </div>
 
-        <!-- Progress Tracker -->
-        <div class="my-8 text-center">
-            <h2 class="text-4xl font-semibold text-gray-800">Track Your Progress</h2>
-            <div id="progressTracker" class="mt-4">
-                <!-- Dynamic content: Charts or tables to display progress can be added here -->
-                <p class="text-gray-600">Your progress charts will appear here (implement with JS and charting library).</p>
-            </div>
+        <!-- Diet Plans Listing -->
+        <div class="my-8">
+            <h2 class="text-4xl font-semibold text-gray-800">Scheduled Diet Plans</h2>
+            <ul id="dietPlansList" class="mt-4">
+                <!-- Handlebars Template for Diet Plans -->
+                <script id="diet-plan-template" type="text/x-handlebars-template">
+                    {{#each this}}
+                    <li class="mb-4">
+                        <h3 class="text-xl font-semibold">{{mealName}} - {{mealDate}} at {{mealTime}}</h3>
+                        <p>{{mealDescription}}</p>
+                    </li>
+                    {{else}}
+                    <p>No scheduled meals yet.</p>
+                    {{/each}}
+                </script>
+            </ul>
         </div>
-
-         <!-- Scheduled Workouts List -->
-    <div class="my-8 text-center">
-        <h2 class="text-4xl font-semibold text-gray-800">Scheduled Workouts</h2>
-        <ul id="scheduledWorkoutsList" class="mt-4">
-            {{#each scheduledWorkouts}}
-                <li class="text-gray-600">
-                    <div>Description: {{this.description}}</div>
-                    <div>Date: {{this.date}}</div>
-                    <div>Time: {{this.time}}</div>
-                </li>
-            {{else}}
-                <li class="text-gray-600">No scheduled workouts yet.</li>
-            {{/each}}
-        </ul>
     </div>
 
-    <script src="/js/myworkouts.js"></script>
+    <!-- Placeholder for your JavaScript file that will handle the logic -->
+    <script src="/js/mydiet.js"></script>
 </body>
 </html>
-
-   
