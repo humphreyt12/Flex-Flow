@@ -24,6 +24,15 @@ Diet.init (
          calories: {
             type: DataTypes.INTEGER,
          },
+         user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'user',
+              key: 'id',
+            },
+          },
+        },
+        {
          sequelize,
          timestamps: false,
          freezeTableName: true,
