@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { Diet, User, Workout } = require('../models');
+/*const express = require('express')
+const app = express()*/
+const { Diet, User, Workout, } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
