@@ -1,0 +1,10 @@
+[
+    {
+       
+        "diet_name": "Test",
+        "recipe": "Test, Test",
+        "meal_type": "Test Meal",
+        "calories": 20,
+        "user_id": 1
+    }
+]

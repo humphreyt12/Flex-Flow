@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="path/to/style.css"></link>
+    <script src="path/to/index.var.js"></script>
+</head>
+<body>
+
+
+
+
+
+
+
+<form id="notificationForm">
+    <h2> Notify me about:</h2>
+    <!-- Editable field for the title -->
+    <input type="text" id="titleInput" placeholder="Enter title here">
+    
+    <h2>My notification:</h2>
+    <!-- Editable field for the message -->
+    <textarea id="messageInput" rows="4" cols="50" placeholder="Enter message here"></textarea>
+    
+    <!-- Button to trigger saving the message and title -->
+    <button onclick="saveMessage()">Save</button>
+    <h2>Notification Time:</h2>
+    <input type="datetime-local" id="notificationTime">
+
+
+<h2>Notification type:</h2>
+<select id="colorSelector">
+  <option value="default">Default</option>
+  <option value="red">Red</option>
+  <option value="green">Green</option>
+  <option value="blue">Blue</option>
+  <!-- Add more color options here -->
+</select>
+
+<h2>Notification Icon:</h2>
+<select id="iconSelector">
+  <option value="defaultIcon">Default</option>
+  <option value="icon1">Icon 1</option>
+  <option value="icon2">Icon 2</option>
+  <!-- Add more icon options here -->
+</select>
+
+<button onclick="scheduleNotification()">Schedule Notification</button>
+</form>
+    <script> let notifier = new AWN(globalOptions); </script>
+</body>
+</html>
+
+
+
+
