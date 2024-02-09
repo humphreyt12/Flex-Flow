@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     const workouts = workoutData.map((workout) => workout.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('myworkouts', { 
+    res.render('myworkouts',{ layout: false,
       workouts,
       logged_in: req.session.logged_in 
     });
@@ -49,7 +49,7 @@ router.get('/workout/:id', async (req, res) => {
 
     const workout = workoutData.get({ plain: true });
     //Creating the workouts 
-    res.render('workout', {
+    res.render('workout', { layout: false,
       ...workout,
       logged_in: req.session.logged_in
     });
@@ -60,50 +60,73 @@ router.get('/workout/:id', async (req, res) => {
 
 // Use withAuth middleware to prevent access to route
 router.get('/homepage', withAuth, async (req, res) => {
+  console.log('Accessing /homepage route'); // Log when route is accessed
+
   try {
+    console.log('Session User ID:', req.session.user_id); // Log the session user ID to verify it exists
+
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Workout }],
+      include: [{ model: Workout }, { model: Diet }], // Ensure models are properly included
     });
 
+    if (!userData) {
+      console.log('No user data found for session ID:', req.session.user_id); // Log if no user data is found
+      res.status(404).send('User not found');
+      return;
+    }
+
     const user = userData.get({ plain: true });
+    console.log('User data for homepage:', user); // Log the user data being passed to the template
 
     //Creating the dashboard
     res.render('homepage', {
       layout: false,
       ...user, // Spread operator to pass user object properties as separate properties
-      logged_in: logged_in
+      logged_in: req.session.logged_in // Use req.session.logged_in directly
     });
 
   } catch (err) {
-    res.status(500).json(err);
+    console.error('Error accessing /homepage:', err); // Log any errors encountered
+    res.status(500).json({ message: 'Internal server error', error: err.message });
   }
 });
+
 
 router.get('/signup', (req, res) => {
   console.log('About to render signup');
   res.render('signup', { layout: false }); // Example without using a layout
 });
 
+router.get('/help', (req, res) => {
+  console.log('About to render help');
+  res.render('help', { layout: false }); // Example without using a layout
+});
+
+
+router.get('/myworkouts', (req, res) => {
+  console.log('About to render myworkouts');
+  res.render('myworkouts', { layout: false }); 
+});
+
+router.get('/mydiet', (req, res) => {
+  console.log('About to render mydiet');
+  res.render('mydiet', { layout: false }); // Example without using a layout
+});
+
+router.get('/methods', (req, res) => {
+  console.log('About to render methods');
+  res.render('methods', { layout: false}); // Example without using a layout
+});
+
+router.get('/dietplans', (req, res) => {
+  console.log('About to render dietplans');
+  res.render('dietplans', { layout: false }); // Example without using a layout
+});
 
 
 
-// router.get('/signup', (req, res) => {
-//   console.log('Accessing the signup route');
-//   res.render('signup', {}, (err, html) => {
-//     if (err) {
-//       console.log('Error rendering signup:', err);
-//       // Ensure we stop execution and properly handle the error
-//       return res.status(500).send('An error occurred');
-//     }
-//     console.log('Signup page rendered successfully');
-//     // If no error, send the rendered HTML
-//     res.send(html);
-//   });
-//   // Remove or comment out the incorrect second render
-//   // res.render('signup');
-// });
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -112,8 +135,10 @@ router.get('/login', (req, res) => {
     return;
   }
 
-  res.render('login');
+  res.render('login',{ layout: false });
 });
+
+
 
 
  

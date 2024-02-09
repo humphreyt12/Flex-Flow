@@ -6,67 +6,90 @@
     <title>Flex Flow Workout Manager</title>
     <!-- Include Tailwind CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Include Handlebars from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
 </head>
-<body class="w-full h-screen" style="background-image: url('assets/flexing lady bg.svg'); background-size: cover; background-position: center;"> 
+<body class="w-full h-screen" style= "background-image: url('assets/flexing lady bg.svg'); background-size: cover; background-position: center;"> 
 
-    
-      <!-- Navigation -->
-       <nav class="shadow-md flex justify-between items-center py-1 px-6">
-        <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class="h-12">
-        <!-- Dynamic navigation buttons -->
-        <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white animate-bounce bg-gradient-to-r from-blue-600 to-black hover:from-black hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-base top-0 px-12 mr-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-            </svg>
-        </button>
-        <!-- Dropdown content -->
-        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                {{#each navLinks}}
-                    <li>
-                        <a href="{{this.link}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{this.text}}</a>
-                    </li>
-                {{/each}}
-            </ul>
-        </div>
+    <!-- Container -->
+   
+            <nav class="shadow-md flex justify-between">
+        <span class="top-0  mt-2 left-0 flex h-12">
+            <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class=" w-100">
+        </span>
+    <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white  bg-gradient-to-r from-blue-600 hover:from-gray-400 hover:to-blue-700 to-black  focus:outline-none font-medium rounded-lg text-base top-0 px-12 mb-3 mr-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button">
+    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+    </svg>
+</button>
+
     </nav>
-    <!-- Handlebars Template for Buttons -->
-    <script id="buttons-template" type="text/x-handlebars-template">
-        {{#each buttons}}
-            <div class="items-left">
-                <div class="relative">
-                    <button type="submit" id="{{id}}" class="transition ml-8 text-3xl font-medium text-white w-1/3 bg-gradient-to-r from-black to-{{color}} hover:from-gray-400 hover:to-{{hoverColor}} h-24 block whitespace-nowrap text-center py-4 rounded-full border drop-shadow-lg border-gray-600">
-                        {{text}}
-                    </button>
+<div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+    <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+        <li>
+            <a href="/homepage" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
+        </li>
+        <li>
+            <a href="/notifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
+        </li>
+        <li>
+            <a href="/login" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
+        </li>
+    </ul>
+</div>
+
+
+    <form class="container mx-auto space-y-10 grid grid-cols-1 mt-20 ">
+
+
+        <!-- Form -->
+       <!-- {{!- my workouts button -}} -->
+        <div class="items-left">
+            <div class="relative">
+                <a href="/myworkouts" id="workouts" class="flex items-center justify-center transition ml-8 text-3xl font-medium text-white w-1/3 bg-gradient-to-r from-black to-blue-600 hover:from-gray-400 hover:to-blue-700 h-24  whitespace-nowrap text-center py-4 rounded-full border drop-shadow-lg border-gray-600">My Workouts</a>
+                </div>
+        </div>
+                      <!-- {{!- my diets button -}} -->
+          <div class="items-left">
+            <div class="relative">
+                <a href="/mydiet" id="diets" class="flex items-center justify-center transition ml-8 text-3xl font-medium text-white bg-gradient-to-r from-black to-blue-600 w-1/3 hover:from-gray-400 hover:to-blue-700 h-24 text-center py-4 rounded-full border drop-shadow-lg border-gray-600">My Diets</a>
+                    </span>
                 </div>
             </div>
-        {{/each}}
-    </script>
+        </div>
+                <!-- {{!- methods button -}} -->
+        <div class="items-left">
+            <div class="relative">
+                <a href="/methods" id="workout-methods" class="flex items-center justify-center transition ml-8 me-2 text-3xl font-medium text-white bg-gradient-to-r from-black to-blue-600 w-1/3 hover:from-gray-400 hover:to-blue-700 h-24  whitespace-nowrap text-center py-4 rounded-full border drop-shadow-lg border-gray-600">Workout methods</a>
+                </div>
+            </div>
+        </div>
+              <!-- {{!- notifications button -}} -->
+        <div class=" items-left">
+            <div class="relative">
+                <a href="/dietplans" id="diet-suggestions" class="flex items-center justify-center transition ml-8 me-2 text-3xl font-medium text-white bg-gradient-to-r from-black to-blue-600  h-24  w-1/3 hover:from-gray-400 hover:to-blue-700 whitespace-nowrap text-center py-4 rounded-full border drop-shadow-lg border-gray-600">Diet Suggestions</a>
+                
+            </div>
+        </div>
 
-    <!-- Dynamic Content will be injected here -->
-    <div class="container mx-auto space-y-10 grid grid-cols-1 mt-20" id="buttonContainer">
-        <!-- Buttons generated by Handlebars will appear here -->
-    </div>
+    </form>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const data = {
-                buttons: [
-                    {id: "workouts", text: "My Workouts", color: "blue-600", hoverColor: "blue-700"},
-                    {id: "diets", text: "My Diets", color: "blue-600", hoverColor: "blue-700"},
-                    {id: "methods", text: "Workout Methods", color: "blue-600", hoverColor: "blue-700"},
-                    {id: "suggestions", text: "Diet Suggestions", color: "blue-600", hoverColor: "blue-700"}
-                ]
-            };
+        <!-- Footer Links -->
+        
+ <script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the button and the dropdown menu
+        const dropdownButton = document.getElementById('Dropdown');
+        const dropdownMenu = document.getElementById('dropdown');
 
-            const templateScript = Handlebars.compile(document.getElementById("buttons-template").innerHTML);
-            const html = templateScript(data);
-            document.getElementById("buttonContainer").innerHTML = html;
+        // Add click event listener to the button
+        dropdownButton.addEventListener('click', function() {
+            // Toggle the 'hidden' class on the dropdown menu
+            dropdownMenu.classList.toggle('hidden');
         });
-    </script>
-
+    });
+</script>
+        
     <script src="/js/homepage.js"></script>
 </body>
 </html>
+
