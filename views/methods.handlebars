@@ -6,102 +6,101 @@
     <title>Workout Method Suggestions</title>
     <!-- Include Tailwind CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Include Handlebars from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
 </head>
 <body class="w-full h-screen" style="background-image: url('assets/background image for login page.svg'); background-size: cover; background-position: center;">
-   <!-- Navigation -->
-       <nav class="shadow-md flex justify-between items-center py-1 px-6">
+    <!-- Navigation -->
+    <nav class="shadow-md flex justify-between items-center py-1 px-6">
         <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class="h-12">
-        <!-- Dynamic navigation buttons -->
-        <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white animate-bounce bg-gradient-to-r from-blue-600 to-black hover:from-black hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-base top-0 px-12 mr-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-            </svg>
-        </button>
-        <!-- Dropdown content -->
-        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                {{#each navLinks}}
-                    <li>
-                        <a href="{{this.link}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{this.text}}</a>
-                    </li>
-                {{/each}}
-            </ul>
-        </div>
+   
+    <!-- Dynamic navigation buttons -->
+        <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white  bg-gradient-to-r from-blue-600 hover:from-gray-400 hover:to-blue-700 to-black  focus:outline-none font-medium rounded-lg text-base top-0 px-12 mb-3 mr-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button">
+    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+    </svg>
+</button>
+
     </nav>
+<div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+    <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+        <li>
+            <a href="/homepage" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
+        </li>
+        <li>
+            <a href="/notifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
+        </li>
+        <li>
+            <a href="/login" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
+        </li>
+    </ul>
+</div>
+
 
     <!-- Main Container for Workout Method Suggestions -->
     <div class="container mx-auto p-2 text-center">
-        <h2 class="text-4xl font-semibold text-black">Workout Method Suggestions</h2><p
-          class="text-xl text-gray-700 font-semibold underline mt-5">Click a exercise to be directed to a instructional workout video.
-        </p>
-        
-        <!-- Handlebars Template for Displaying Workout Methods by Body Part as Buttons -->
-        <script id="workout-methods-template" type="text/x-handlebars-template">
-            {{#each workoutMethods}}
-            <div class="my-4">
-                <h3 class="text-4xl font-semibold text-gray-900">{{@key}}</h3>
-                <div class="mt-4">
-                    {{#each this}}
-                    <button class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600  hover:from-red-700 hover:to-blue-800  bg text-white font-bold  py-5 px-8" data-url="{{url}}">
-                        {{name}}
-                    </button>
-                    {{/each}}
-                </div>
+        <h2 class="text-4xl font-semibold text-black">Workout Method Suggestions</h2>
+        <p class="text-xl text-gray-700 font-semibold underline mt-5">Click an exercise to be directed to an instructional workout video.</p>
+
+        <!-- Chest Workouts -->
+        <div class="my-4">
+            <h3 class="text-4xl font-semibold text-gray-900">Chest</h3>
+            <div class="mt-4">
+                <a href="https://youtu.be/ptpmRrzRtWQ" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Bench Press</a>
+                <a href="https://www.youtube.com/watch?v=hChjZQhX1Ls" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Incline Press</a>
             </div>
-            {{/each}}
-        </script>
-        
-        <div id="workoutMethodsList">
-            <!-- Workout methods will be inserted here by Handlebars -->
         </div>
+
+        <!-- Back Workouts -->
+        <div class="my-4">
+            <h3 class="text-4xl font-semibold text-gray-900">Back</h3>
+            <div class="mt-4">
+                <a href="https://www.youtube.com/watch?v=p40iUjf02j0" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Pull-ups</a>
+                <a href="https://www.youtube.com/watch?v=XxWcirHIwVo" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Deadlifts</a>
+            </div>
+        </div>
+
+        <!-- Biceps Workouts -->
+        <div class="my-4">
+            <h3 class="text-4xl font-semibold text-gray-900">Biceps</h3>
+            <div class="mt-4">
+                <a href="https://www.youtube.com/watch?v=QZEqB6wUPxQ" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Barbell Curl</a>
+                <a href="https://www.youtube.com/watch?v=zC3nLlEvin4" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Hammer Curl</a>
+            </div>
+        </div>
+
+        <!-- Shoulders Workouts -->
+        <div class="my-4">
+            <h3 class="text-4xl font-semibold text-gray-900">Shoulders</h3>
+            <div class="mt-4">
+                <a href="https://www.youtube.com/watch?v=qEwKCR5JCog" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Shoulder Press</a>
+                <a href="https://www.youtube.com/watch?v=3VcKaXpzqRo" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Lateral Raises</a>
+            </div>
+        </div>
+
+        <!-- Legs Workouts -->
+        <div class="my-4">
+            <h3 class="text-4xl font-semibold text-gray-900">Legs</h3>
+            <div class="mt-4">
+                <a href="https://www.youtube.com/watch?v=gcNh17Ckjgg" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Squats</a>
+                <a href="https://www.youtube.com/watch?v=W1SD96lrudY" target="_blank" class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 bg text-white font-bold py-5 px-8 inline-block">Leg Press</a>
+            </div>
+        </div>
+
     </div>
 
-    <!-- JavaScript to handle Handlebars template rendering and button redirection -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Define your workout data including URLs for each workout method
-            var workoutData = {
-                workoutMethods: {
-                    Chest: [
-                        {name: "Bench Press", url: "https://youtu.be/ptpmRrzRtWQ"},
-                        {name: "Incline Press", url: "https://www.youtube.com/watch?v=hChjZQhX1Ls"}
-                    ],
-                    Back: [
-                        {name: "Pull-ups", url: "https://www.youtube.com/watch?v=p40iUjf02j0"},
-                        {name: "Deadlifts", url: "https://www.youtube.com/watch?v=XxWcirHIwVo"}
-                    ],
-                    Biceps: [
-                        {name: "Barbell Curl", url: "https://www.youtube.com/watch?v=QZEqB6wUPxQ"},
-                        {name: "Hammer Curl", url: "https://www.youtube.com/watch?v=zC3nLlEvin4"}
-                    ],
-                    Shoulders: [
-                        {name: "Shoulder Press", url: "https://www.youtube.com/watch?v=qEwKCR5JCog"},
-                        {name: "Lateral Raises", url: "https://www.youtube.com/watch?v=3VcKaXpzqRo"}
-                    ],
-                    Legs: [
-                        {name: "Squats", url: "https://www.youtube.com/watch?v=gcNh17Ckjgg"},
-                        {name: "Leg Press", url: "https://www.youtube.com/watch?v=W1SD96lrudY"}
-                    ]
-                }
-            };
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the button and the dropdown menu
+        const dropdownButton = document.getElementById('Dropdown');
+        const dropdownMenu = document.getElementById('dropdown');
 
-            var templateScript = Handlebars.compile(document.getElementById("workout-methods-template").innerHTML);
-            var html = templateScript(workoutData);
-            document.getElementById("workoutMethodsList").innerHTML = html;
-
-            // Event delegation to handle clicks on workout method buttons
-            document.getElementById("workoutMethodsList").addEventListener("click", function(e) {
-                if (e.target && e.target.nodeName == "BUTTON") {
-                    var url = e.target.getAttribute("data-url");
-                    if (url) {
-                        // Redirect user to the URL
-                        window.location.href = url;
-                    }
-                }
-            });
+        // Add click event listener to the button
+        dropdownButton.addEventListener('click', function() {
+            // Toggle the 'hidden' class on the dropdown menu
+            dropdownMenu.classList.toggle('hidden');
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
