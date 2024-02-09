@@ -31,12 +31,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
       };
       
-      
-      
-    
+      /*
+      document.querySelector('.signup-form').addEventListener('submit', (event) => signupFormHandler(event));
+    })
+    */
     const signupForm = document.querySelector('.signup-form');
     if (signupForm) {
-        signupForm.addEventListener('submit', signupFormHandler);
+        signupForm.addEventListener('submit', signupFormHandler(event));
     }
     
     });
