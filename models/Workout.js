@@ -9,30 +9,37 @@ Workout.init(
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
      },
      workout_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
      },
      schedule: {
-        type: DataTypes.INTEGER, 
+        type: DataTypes.INTEGER,
      },
      date_created: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
+      defaultValue: DataTypes.NOW
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
-
- 
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+      model: 'user',
+      key: 'id',
+    },
+   },
+   },
+   {
      sequelize,
      timestamps: false,
      freezeTableName: true,
      underscored: true,
-     modelName: 'workout',
+     modelName: 'workout'
     }, 
 );
 

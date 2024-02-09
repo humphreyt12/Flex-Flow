@@ -1,9 +1,10 @@
 [
     {
         "workout_name": "Test Workout",
-        "description": "Test",
         "schedule": 1,
-        "date_created": "MM/DD/YYYY"
-
+        "date_created": "2/8/2024",
+        "description": "Test",
+        "user_id": 1
+    
     }
 ]
