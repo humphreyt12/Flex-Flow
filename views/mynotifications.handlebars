@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications Page</title>
+    <link rel="stylesheet" href="../project-2/assets/folder-for-awesome-notifs/notifs.css"></link>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="../project-2/assets/folder-for-awesome-notifs/index.var.js"></script>
+    <script src="../project-2/assets/notifcations.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+</head>
+
+
+<body>
+  <nav class="shadow-md flex justify-between items-center py-1 px-6">
+    <img src="../assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class="h-12">
+    <!-- Dynamic navigation buttons -->
+    <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white animate-bounce bg-gradient-to-r from-blue-600 to-black hover:from-black hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-base top-0 px-12 mr-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
+    </button>
+
+    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+          {{#each navLinks}}
+              <li>
+                  <a href="{{}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{this.text}}</a>
+              </li>
+          {{/each}}
+      </ul>
+  </div>
+</nav>
+
+  <h1>My Notifications</h1>
+
+<div>
+<form id="notificationForm">
+    <section>
+      <h2> Notify me about:</h2>
+      <!-- Editable field for the title -->
+      <input type="text" id="titleInput" placeholder="Enter title here" required />
+    </section>
+
+    <section>
+      <h2>My notification:</h2>
+      <!-- Editable field for the message -->
+      <textarea id="messageInput" rows="4" cols="50" placeholder="Enter message here"></textarea>
+    </section>
+
+    <section>
+      <h2>Notification setting</h2>
+        <input type ='checkbox' id="onReopen">On Page Re-open</input>
+        <input type ='checkbox' id="specificDay">Specific Day</input>
+        <input type ='checkbox' id="specificDate">Specific Date</input>
+    </section>
+
+    <section>
+      <select id="dayOfWeek" style="display: none;">
+        <option value="">Select a day...</option> 
+        <option value="Sunday">Sunday</option>
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option> 
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+      </select>
+    </section>
+    
+
+    <section>
+      <input type="date" id="CalendarDate" style="display: none;" placeholder="Specific Date (YYYY-MM-DD)"/>
+    </section>
+
+    <section>
+    <h2>Notification type:</h2>
+    <select id="colorSelector">
+      <option value="default">Default</option>
+      <option value="red">Red</option>
+      <option value="green">Green</option>
+      <option value="blue">Blue</option>
+      <!-- Add more color options here -->
+    </select>
+  </section>
+
+  <section>
+    <h2>Notification Icon:</h2>
+    <select id="iconSelector">
+      <option value="defaultIcon">Default</option>
+      <option value="icon1">Icon 1</option>
+      <option value="icon2">Icon 2</option>
+      <!-- Add more icon options here -->
+    </select>
+  </section>
+</form>
+<button type="button" onclick="saveFormData()">Save Notification</button>
+
+</div>
+
+<div id="notifications-container"></div>
+
+<script id="notification-template" type="text/x-handlebars-template">
+  {{#each notifications}}
+    <div class="notification">
+      <h3>{{this.title}}</h3>
+      <p>{{this.message}}</p>
+      <!-- Display other properties as needed -->
+      <p>Type: {{this.notificationType}}</p>
+      <p>Day of Week: {{this.dayOfWeek}}</p>
+      <p>Specific Date: {{this.specificDate}}</p>
+      <p>Notification Icon: {{this.notificationIcon}}</p>
+      <!-- Add buttons or links for editing or deleting notifications -->
+    </div>
+  {{else}}
+    <p>No notifications found.</p>
+  {{/each}}
+</script>
+
+
+   
+</body>
+</html>
+
+
+
+
