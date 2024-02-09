@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       
         // Check if all fields are filled and passwords match
         if (name && username && email && password && password === passwordConfirm) {
-          const response = await fetch('/api/users/signup', {
+          const response = await fetch('/api/users/', {
             method: 'POST',
             body: JSON.stringify({ name, username, email, password }),
             headers: { 'Content-Type': 'application/json' },
