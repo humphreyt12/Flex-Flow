@@ -71,9 +71,11 @@ router.get('/homepage', withAuth, async (req, res) => {
 
     //Creating the dashboard
     res.render('homepage', {
-      ...user,
-      logged_in: true
+      layout: false,
+      ...user, // Spread operator to pass user object properties as separate properties
+      logged_in: logged_in
     });
+
   } catch (err) {
     res.status(500).json(err);
   }
