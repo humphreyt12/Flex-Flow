@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Workout } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-//POST request for new Blog
+//POST request for new Workout
 router.post('/', withAuth, async (req, res) => {
   try {
     const newWorkout = await Workout.create({
