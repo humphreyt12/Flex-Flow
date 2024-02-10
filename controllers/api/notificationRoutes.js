@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const express = require('express')
 const withAuth = require('../../utils/auth');
 const { Notification } = require('../../models');
 

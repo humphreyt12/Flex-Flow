@@ -1,1 +1,0 @@
-CREATE DATABASE Notifications_db;
