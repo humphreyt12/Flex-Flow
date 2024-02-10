@@ -11,20 +11,20 @@ Workout.init(
         primaryKey: true,
         autoIncrement: true
      },
-     workout_name: {
+     workout: {
         type: DataTypes.STRING,
         allowNull: false
      },
-     schedule: {
-        type: DataTypes.INTEGER,
-     },
-     date_created: {
+   
+     date: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW
     },
-    description: {
-      type: DataTypes.STRING
+     time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     },
     user_id: {
       type: DataTypes.INTEGER,

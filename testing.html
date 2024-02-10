@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diet Plans</title>
+    <title>Workout Method Suggestions</title>
     <!-- Include Tailwind CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <!-- Include Handlebars from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
 </head>
 <body class="w-full h-screen" style="background-image: url('assets/background image for login page.svg'); background-size: cover; background-position: center;">
-
-       <!-- Navigation -->
+   <!-- Navigation -->
        <nav class="shadow-md flex justify-between items-center py-1 px-6">
         <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class="h-12">
         <!-- Dynamic navigation buttons -->
@@ -32,48 +31,90 @@
         </div>
     </nav>
 
-    <!-- Main Container for Diet Plan Creation and Listing -->
-    <div class="container mx-auto p-4 text-center">
-        <!-- Diet Plan Creation Form -->
-        <div class="my-2">
-            <h2 class="text-4xl font-semibold text-gray-800">Create Your Diet Plan</h2>
-            <form id="dietPlanForm" class="container px-96 space-y-4 mt-4">
-                <div>
-                    <input type="text" id="mealName" class="form-input hover:bg-gray-100 focus:bg-white border px-4 py-2 rounded w-full" placeholder="Meal Name">
-                </div>
-                <div>
-                    <textarea id="mealDescription" class="form-input hover:bg-gray-100 focus:bg-white border px-4 py-2 rounded w-full" placeholder="Meal Description and Calories"></textarea>
-                    <p class="text-gray-700 mt-3">Click calendar and clock icons.
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <input type="date" id="mealDate" class="form-input border px-4 py-2 col-start-2 rounded w-full" placeholder="Select Date">
-                    <input type="time" id="mealTime" class="form-input border px-4 py-2 col-start-3 rounded w-full" placeholder="Select Time">
-                </div>
-                <button type="submit" class="bg-gradient-to-r from-black to-blue-600 text-white px-6 py-2 rounded hover:from-blue-600 hover:to-black w-60">Add Meal</button>
-            </form>
-        </div>
-
-        <!-- Diet Plans Listing -->
-        <div class="my-8">
-            <h2 class="text-4xl font-semibold text-gray-800">Scheduled Diet Plans</h2>
-            <ul id="dietPlansList" class="mt-4">
-                <!-- Handlebars Template for Diet Plans -->
-                <script id="diet-plan-template" type="text/x-handlebars-template">
+    <!-- Main Container for Workout Method Suggestions -->
+    <div class="container mx-auto p-2 text-center">
+        <h2 class="text-4xl font-semibold text-black">Workout Method Suggestions</h2><p
+          class="text-xl text-gray-700 font-semibold underline mt-5">Click a exercise to be directed to a instructional workout video.
+        </p>
+        <!-- Handlebars Template for Displaying Workout Methods by Body Part as Buttons -->
+        <script id="workout-methods-template" type="text/x-handlebars-template">
+        <p>template good</p>
+            {{#each workoutMethods}}
+            <div class="my-4">
+                <h3 class="text-4xl font-semibold text-gray-900">{{@key}}</h3>
+                <div class="mt-4">
                     {{#each this}}
-                    <li class="mb-4">
-                        <h3 class="text-xl font-semibold">{{mealName}} - {{mealDate}} at {{mealTime}}</h3>
-                        <p>{{mealDescription}}</p>
-                    </li>
-                    {{else}}
-                    <p>No scheduled meals yet.</p>
+                    <button class="mb-4 p-4 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600  hover:from-red-700 hover:to-blue-800  bg text-white font-bold  py-5 px-8" data-url="{{url}}">
+                        {{name}}
+                    </button>
                     {{/each}}
-                </script>
-            </ul>
+                </div>
+            </div>
+            {{/each}}
+        </script>
+        
+        <div id="workoutMethodsList">
+            <!-- Workout methods will be inserted here by Handlebars -->
         </div>
     </div>
 
-    <!-- Placeholder for your JavaScript file that will handle the logic -->
-    <script src="/js/mydiet.js"></script>
+    <!-- JavaScript to handle Handlebars template rendering and button redirection -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Document is fully loaded.');
+            // Define your workout data including URLs for each workout method
+            var workoutData = {
+                workoutMethods: {
+                    Chest: [
+                        {name: "Bench Press", url: "https://youtu.be/ptpmRrzRtWQ"},
+                        {name: "Incline Press", url: "https://www.youtube.com/watch?v=hChjZQhX1Ls"}
+                    ],
+                    Back: [
+                        {name: "Pull-ups", url: "https://www.youtube.com/watch?v=p40iUjf02j0"},
+                        {name: "Deadlifts", url: "https://www.youtube.com/watch?v=XxWcirHIwVo"}
+                    ],
+                    Biceps: [
+                        {name: "Barbell Curl", url: "https://www.youtube.com/watch?v=QZEqB6wUPxQ"},
+                        {name: "Hammer Curl", url: "https://www.youtube.com/watch?v=zC3nLlEvin4"}
+                    ],
+                    Shoulders: [
+                        {name: "Shoulder Press", url: "https://www.youtube.com/watch?v=qEwKCR5JCog"},
+                        {name: "Lateral Raises", url: "https://www.youtube.com/watch?v=3VcKaXpzqRo"}
+                    ],
+                    Legs: [
+                        {name: "Squats", url: "https://www.youtube.com/watch?v=gcNh17Ckjgg"},
+                        {name: "Leg Press", url: "https://www.youtube.com/watch?v=W1SD96lrudY"}
+                    ]
+                }
+            };
+
+             console.log('Workout Data:', workoutData);
+             console.log('Compiling Handlebars template');
+             try {
+            var templateScript = Handlebars.compile(document.getElementById("workout-methods-template").innerHTML);
+            console.log('Template compiled', templateScript);
+            var html = templateScript(workoutData);
+            console.log('HTML generated by Handlebars:', html);
+            } catch (error) {
+    console.error('Error generating HTML with Handlebars:', error);
+}
+            document.getElementById("workoutMethodsList").innerHTML = html;
+            console.log('Content inserted into DOM');
+
+           
+             
+            // Event delegation to handle clicks on workout method buttons
+            document.getElementById("workoutMethodsList").addEventListener("click", function(e) {
+                if (e.target && e.target.nodeName == "BUTTON") {
+                    var url = e.target.getAttribute("data-url");
+                    console.log('Button clicked with URL:', url);
+                    if (url) {
+                        // Redirect user to the URL
+                        window.location.href = url;
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
