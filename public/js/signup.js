@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     */
     const signupForm = document.querySelector('.signup-form');
     if (signupForm) {
-        signupForm.addEventListener('submit', signupFormHandler(event));
+        signupForm.addEventListener('submit', signupFormHandler);
     }
     
     });

@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+//document.addEventListener('DOMContentLoaded', (event) => {
 
 const loginFormHandler = async (event) => {
     event.preventDefault();
   
     // Collect values from the login form
-    const username = document.querySelector('#username').value.trim();
-    const password = document.querySelector('#password').value.trim();
+    const username = document.querySelector('#username-login').value.trim();
+    const password = document.querySelector('#password-login').value.trim();
   
     if (username && password) {
       // Send a POST request to the API endpoint
@@ -22,16 +22,17 @@ const loginFormHandler = async (event) => {
       } else {
         alert(response.statusText);
       }
+    } else if (!username) {
+      alert('username not found.'); 
+    } else if (!password) {
+      alert('passwoed not found.'); 
     }
+
   };
   
  
   
-  const loginForm = document.querySelector('.login-form');
-if (loginForm) {
-    loginForm.addEventListener('submit', loginFormHandler());
-}
+  document.querySelector('.login-form')
+  .addEventListener('submit', loginFormHandler);
 
 
-
-});
