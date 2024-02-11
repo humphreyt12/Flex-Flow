@@ -1,1 +1,1 @@
-CREATE DATABASE Notifications_db;
+-- CREATE DATABASE Notifications_db;

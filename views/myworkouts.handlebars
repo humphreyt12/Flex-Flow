@@ -41,12 +41,13 @@
         <div class="my-2 text-center ">
             <h2 class="text-4xl font-semibold text-gray-800">Schedule Your Workouts</h2>
             <p class="text-gray-600 mt-2">Click calender and clock icons.</p>
-            <form id="scheduleForm" class="grid gap-x-4 container px-96 justify-center grid-cols-6 ">
+            <form class="form scheduleForm" class="grid gap-x-4 container px-96 justify-center grid-cols-6 ">
+                <div class="form-group">
                 <input type="date" class="form-input border  mt-2  col-start-2 col-span-2 px-9 py-3 rounded" placeholder="Select Date">
                 <input type="time" class="form-input border mt-2  col-start-4 col-span-2 px-9 py-3 rounded" placeholder="Select Time">
-                <input type="text" class="form-input border col-start-2 col-span-4 mt-2  hover:bg-gray-200 focus:bg-white 
-                  px-5 py-3 rounded" placeholder="Enter Your Workout">
+                <input type="text" class="form-input border col-start-2 col-span-4 mt-2  hover:bg-gray-200 focus:bg-white px-5 py-3 rounded" placeholder="Enter Your Workout">
                 <button type="submit" class="bg-blue-700  hover:from-black hover:to-blue-800 mt-2 col-start-3 col-span-2 py-3 justify-center text-white px-6 rounded ">Schedule Workout</button>
+                </div>
             </form>
         </div>
 
@@ -62,18 +63,18 @@
          <!-- Scheduled Workouts List -->
     <div class="grid grid-cols-4 my-8 text-center">
         <h2 class="text-4xl col-span-4 font-semibold text-gray-800">Scheduled Workouts</h2>
-        <ul id="scheduledWorkoutsList" class="mt-4">
+        <div id="scheduledWorkoutsList" class="mt-4">
             {{#each scheduledWorkouts}}
-                <li class="text-black col-span-2 border">
+                <div class="text-black col-span-2 border">
                     <div>Workout: {{this.workout}}</div>
                     <div>Date: {{this.date}}</div>
                     <div>Time: {{this.time}}</div>
           <button class="delete-btn px-4 py-2 bg-red-500 text-white rounded">Delete</button>
-                </li>
+                </div>
             {{else}}
                 <li class=" absolute left-1 right-1 text-center text-gray-600">No scheduled workouts yet.</li>
             {{/each}}
-        </ul>
+        </div>
     </div>
 
 <script>
