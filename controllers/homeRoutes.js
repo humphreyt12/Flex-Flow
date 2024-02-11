@@ -1,7 +1,7 @@
 const router = require('express').Router();
 /*const express = require('express')
 const app = express()*/
-const { Diet, User, Workout, } = require('../models');
+const { Diet, User, Workout, Notification} = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -70,7 +70,7 @@ router.get('/homepage', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Workout }, { model: Diet }], // Ensure models are properly included
+      include: [{ model: Workout }, { model: Diet }, {model: Notification}], // Ensure models are properly included
     });
 
     if (!userData) {
@@ -125,6 +125,38 @@ router.get('/methods', (req, res) => {
 router.get('/dietplans', (req, res) => {
   console.log('About to render dietplans');
   res.render('dietplans', { layout: false }); // Example without using a layout
+});
+
+/*
+router.get('/mynotifications', (req, res) => {
+  console.log('About to render notifications');
+  res.render('mynotifications', { layout: false }); // Example without using a layout
+});
+*/
+
+router.get('/mynotifications', withAuth, async (req, res) => {
+  try {
+    const userId = req.session.userId; // Or req.session.user_id, based on your session setup
+
+    const notificationData = await Notification.findAll({
+      where: {
+        userId: userId,
+      },
+    });
+
+    // Convert Sequelize objects to plain objects
+    const notifications = notificationData.map(notification => notification.get({ plain: true }));
+
+    // Render the Handlebars view and pass the notifications data
+    res.render('mynotifications', { // Assuming you have a 'notifications.handlebars' file in your views directory
+      notifications: notifications,
+      logged_in: req.session.logged_in,
+      // Include any other properties you need
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
 });
 
 
