@@ -2,8 +2,8 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 const { Notification } = require('../../models');
 
-/*
-router.get('/mynotifications', withAuth, async (req, res) => {
+
+router.get('/notifications',withAuth, async (req, res) => {
   try {
     const userId = req.session.userId; // Or req.session.user_id, based on your session setup
 

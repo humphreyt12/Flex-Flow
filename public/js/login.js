@@ -1,4 +1,4 @@
-//document.addEventListener('DOMContentLoaded', (event) => {
+// document.addEventListener('DOMContentLoaded', (event) => {
 
 const loginFormHandler = async (event) => {
     event.preventDefault();
@@ -27,12 +27,15 @@ const loginFormHandler = async (event) => {
     } else if (!password) {
       alert('passwoed not found.'); 
     }
-
+  
   };
   
  
   
-  document.querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+ document.querySelector('.login-form')
+ .addEventListener('submit', loginFormHandler);
 
 
+
+
+// });

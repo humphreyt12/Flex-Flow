@@ -1,3 +1,4 @@
+const router = require('express').Router();
 const { Diet } = require('../../models');
 const withAuth = require('../../utils/auth');
 

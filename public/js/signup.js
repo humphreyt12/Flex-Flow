@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             body: JSON.stringify({ name, username, email, password }),
             headers: { 'Content-Type': 'application/json' },
           });
-      
+        
           if (response.ok) {
             document.location.replace('/homepage');
           } else {
