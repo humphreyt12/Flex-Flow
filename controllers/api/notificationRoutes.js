@@ -1,28 +1,34 @@
 const router = require('express').Router();
-const express = require('express')
 const withAuth = require('../../utils/auth');
 const { Notification } = require('../../models');
 
 
 router.get('/notifications',withAuth, async (req, res) => {
   try {
-    // Assuming user_id is stored in req.session
-    const userId = req.session.userId; // Adjust based on your authentication setup
+    const userId = req.session.userId; // Or req.session.user_id, based on your session setup
 
     const notificationData = await Notification.findAll({
       where: {
-        userId: userId, // Filter notifications by the logged-in user's ID
+        userId: userId,
       },
     });
 
-    res.status(200).json(notificationData);
+    // Convert Sequelize objects to plain objects
+    const notifications = notificationData.map(notification => notification.get({ plain: true }));
+
+    // Render the Handlebars view and pass the notifications data
+    res.render('mynotifications', { // Assuming you have a 'notifications.handlebars' file in your views directory
+      notifications: notifications,
+      logged_in: req.session.logged_in,
+      // Include any other properties you need
+    });
   } catch (err) {
     console.error(err);
-    res.status(500).json(err);
+    res.status(500).send('Server error');
   }
-});
+});*/
 
-router.put('/notifications/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   const {id} = req.params;
   const { title, message,onReopen, specificDay, specificDate, dayOfWeek, CalendarDate, notificatioColor, notificationIcon} = req.body
 
@@ -33,7 +39,13 @@ router.put('/notifications/:id', async (req, res) => {
         const updatedNotification = await notification.update({
             title,
             message,
-            ...otherFields
+            onReopen,
+            specificDay,
+            specificDate,
+            dayOfWeek,
+            CalendarDate,
+            notificatioColor,
+            notificationIcon
         });
         res.json(updatedNotification);
     } else {
@@ -47,7 +59,7 @@ router.put('/notifications/:id', async (req, res) => {
 
 
 
-router.delete('/notification/:id', withAuth, async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     const notificationData = await Notification.destroy({
       where: {
