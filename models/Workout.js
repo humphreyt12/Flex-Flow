@@ -21,7 +21,7 @@ Workout.init(
       allowNull: false,
       defaultValue: DataTypes.NOW
     },
-     time: {
+    time: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW

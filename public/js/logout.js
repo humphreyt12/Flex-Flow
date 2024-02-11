@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('An error occurred while trying to log out.');
     }
   };
-  
-  d  // Add click event listener to the logout link
+
+  // Add click event listener to the logout link
   if (logoutLink) {
     logoutLink.addEventListener('click', logout);
   } else {
