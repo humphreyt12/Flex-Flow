@@ -26,7 +26,7 @@ router.get('/notifications',withAuth, async (req, res) => {
     console.error(err);
     res.status(500).send('Server error');
   }
-});*/
+});
 
 router.put('/:id', async (req, res) => {
   const {id} = req.params;

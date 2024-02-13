@@ -1,7 +1,7 @@
 const router = require('express').Router();
 /*const express = require('express')
 const app = express()*/
-const { Diet, User, Workout, Notification} = require('../models');
+const { Diet, User, Workout, Notification } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -44,6 +44,10 @@ router.get('/workout/:id', async (req, res) => {
         },
         {
           model: Diet,
+          include: [User]
+        },
+        {
+          model: Notification,
           include: [User]
         },
       ],
