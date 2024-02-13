@@ -2,73 +2,109 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 const { Notification } = require('../../models');
 
+//console.log(req.session)
 
-router.get('/notifications',withAuth, async (req, res) => {
+router.post('/', withAuth ,async (req, res) => {
+  console.log('Received request body:', req.body); // Log the incoming request body
+
   try {
-    const userId = req.session.userId; // Or req.session.user_id, based on your session setup
+      const { title, message, notificationType, associatedDate, notificationColor, notificationIcon } = req.body;
+      const user_id = req.session.user_id; // Get the user_id from the session
 
-    const notificationData = await Notification.findAll({
-      where: {
-        userId: userId,
-      },
-    });
+      // Debugging: Log the values to ensure they are received correctly
+      console.log('Destructured values:', { title, message, notificationType, associatedDate, notificationColor, notificationIcon, user_id });
 
-    // Convert Sequelize objects to plain objects
-    const notifications = notificationData.map(notification => notification.get({ plain: true }));
+      if (!user_id) {
+          // If there's no user_id in the session, respond with an error or prompt the user to log in
+          return res.status(403).json({ message: "User not logged in." });
+      }
 
-    // Render the Handlebars view and pass the notifications data
-    res.render('mynotifications', { // Assuming you have a 'notifications.handlebars' file in your views directory
-      notifications: notifications,
-      logged_in: req.session.logged_in,
-      // Include any other properties you need
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Server error');
+      const newNotification = await Notification.create({
+          title,
+          message,
+          notificationType,
+          dayOfWeek: notificationType === 'specificDay' ? associatedDate : null,
+          specificDate: notificationType === 'specificDate' ? associatedDate : null,
+          notificationColor,
+          notificationIcon,
+          user_id // Associate the new notification with the logged-in user
+      });
+
+      console.log('Created notification:', newNotification); // Log the newly created notification object
+      
+      res.status(201).json(newNotification);
+  } catch (error) {
+      console.error('Error creating notification:', error);
+      res.status(500).json({ message: 'Internal server error', error: error.toString() });
   }
 });
 
-router.put('/:id', async (req, res) => {
-  const {id} = req.params;
-  const { title, message,onReopen, specificDay, specificDate, dayOfWeek, CalendarDate, notificatioColor, notificationIcon} = req.body
+
+
+
+
+router.get('/api/notifications/', withAuth, async (req, res) => {
+  try {
+      const user_id = 1; // Assuming user_id is stored in the session upon login
+      const notifications = await Notification.findAll({
+          where: { user_id: user_id }
+      });
+      res.json(notifications); // Send the notifications as JSON
+  } catch (error) {
+      console.error('Failed to fetch notifications:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+router.put("/:id", withAuth , async (req, res) => {
+  const { id } = req.params;
+  const {
+    title,
+    message,
+    notificationType,
+    dayOfWeek,
+    specificDate,
+    notificationColor,
+    notificationIcon,
+  } = req.body;
 
   try {
     const notification = await Notification.findByPk(id);
-    if (notification) {
-        // Update the notification with new values
-        const updatedNotification = await notification.update({
-            title,
-            message,
-            onReopen,
-            specificDay,
-            specificDate,
-            dayOfWeek,
-            CalendarDate,
-            notificatioColor,
-            notificationIcon
-        });
-        res.json(updatedNotification);
-    } else {
-        res.status(404).json({ message: 'Notification not found' });
+    if (!notification) {
+      return res.status(404).json({ message: "Notification not found" });
     }
-} catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error updating notification' });
-}
+
+    // Update based on notificationType
+    // You might adjust dayOfWeek and specificDate based on the notificationType here
+    await notification.update({
+      title,
+      message,
+      notificationType,
+      dayOfWeek: notificationType === "specificDay" ? dayOfWeek : null,
+      specificDate: notificationType === "specificDate" ? specificDate : null,
+      notificationColor,
+      notificationIcon,
+    });
+
+    res.json({ message: "Notification updated successfully", notification });
+  } catch (error) {
+    console.error("Failed to update notification:", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.toString() });
+  }
 });
 
-
-
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const notificationData = await Notification.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id
+        user_id: req.session.user_id,
       },
     });
     if (!notificationData) {
-      res.status(404).json({ message: 'No notifications found with this id!' });
+      res.status(404).json({ message: "No notifications found with this id!" });
       return;
     }
     res.status(200).json(notificationData);
@@ -77,4 +113,22 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
+
+
+router.get('/api/session', withAuth , (req, res) => {
+  if (req.session.logged_in) {
+    // If the user is logged in, respond with their session info
+    res.json({
+      loggedIn: true,
+      user_id: 1,
+      // You can add more session-related data here if needed
+    });
+  } else {
+    // If the user is not logged in, indicate that in the response
+    res.json({ loggedIn: false });
+  }
+});
+
+
 module.exports = router;
+

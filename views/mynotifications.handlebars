@@ -1,4 +1,4 @@
-{{!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../project-2/assets/folder-for-awesome-notifs/notifs.css"></link>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <script src="/js/node.awesome-notifications.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
     
     
 </head>
@@ -23,6 +23,30 @@
     </svg>
 </button>
 
+   <!-- Navigation -->
+       <nav class="shadow-md flex justify-between items-center py-1 px-6">
+        <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class="h-12">
+        <!-- Dynamic navigation buttons -->
+       <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white  bg-gradient-to-r from-blue-600 hover:from-gray-400 hover:to-blue-700 to-black  focus:outline-none font-medium rounded-lg text-base top-0 px-12 mb-3 mr-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button">
+    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+    </svg>
+</button>
+
+    </nav>
+<div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+    <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+        <li>
+            <a href="/homepage" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
+        </li>
+        <li>
+            <a href="/mynotifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
+        </li>
+        <li>
+            <a href="/login" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
+        </li>
+    </ul>
+</div>
     </nav>
 <div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
     <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
@@ -105,23 +129,32 @@
 </div>
 
 <div id="notifications-container">
+<div id="notifications-container">
 
 <script id="notification-template" type="text/x-handlebars-template">
   {{#each notifications}}
-    <div class="notification">
-      <h3>{{this.title}}</h3>
-      <p>{{this.message}}</p>
-      <!-- Display other properties as needed -->
-      <p>Type: {{this.notificationType}}</p>
-      <p>Day of Week: {{this.dayOfWeek}}</p>
-      <p>Specific Date: {{this.specificDate}}</p>
-      <p>Notification Icon: {{this.notificationIcon}}</p>
-      <!-- Add buttons or links for editing or deleting notifications -->
-    </div>
-  {{else}}
-    <p>No notifications found.</p>
-  {{/each}}
+  <div class="notification">
+    <h3>{{title}}</h3>
+    <p>{{message}}</p>
+    <p>Type: {{notificationType}}</p>
+    {{#if dayOfWeek}}
+      <p>Day of Week: {{dayOfWeek}}</p>
+    {{/if}}
+    {{#if specificDate}}
+      <p>Specific Date: {{specificDate}}</p>
+    {{/if}}
+    <p>Notification Icon: {{notificationIcon}}</p>
+    <p>Notification Color: {{notificationColor}}</p>
+    <button class="update-btn" data-id="{{id}}">Update</button>
+    <button class="delete-btn" data-id="{{id}}">Delete</button>
+  </div>
+{{else}}
+  <p>No notifications found.</p>
+{{/each}}
+
 </script>
+
+
 </div>
 
 <script>
@@ -147,4 +180,4 @@
 
 
 
- --}}
+

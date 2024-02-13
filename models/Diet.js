@@ -11,19 +11,20 @@ Diet.init (
             primaryKey: true,
             autoIncrement: true,
          },
-         diet_name: {
+         mealName: {
             type: DataTypes.STRING,
             allowNull: false,
          },
-         recipe: {
-            type: DataTypes.STRING,
-         },
-         meal_type: {
-            type: DataTypes.STRING,
-         },
-         calories: {
-            type: DataTypes.INTEGER,
-         },
+         mealDate: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
+          },
+         mealTime: {
+            type: DataTypes.TIME,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
+          },
          user_id: {
             type: DataTypes.INTEGER,
             references: {
