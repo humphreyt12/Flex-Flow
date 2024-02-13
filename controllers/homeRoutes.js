@@ -43,6 +43,14 @@ router.get('/workout/:id', async (req, res) => {
           model: Workout,
           include: [User]
         },
+        {
+          model: Diet,
+          include: [User]
+        },
+        {
+          model: Notification,
+          include: [User]
+        },
       ],
     });
 
