@@ -29,7 +29,7 @@
             <a href="/notifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
         </li>
         <li>
-            <a href="/login" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
+            <a href="/logout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
         </li>
     </ul>
 </div>
@@ -46,24 +46,15 @@
                 <input type="date" class="form-input border  mt-2  col-start-2 col-span-2 px-9 py-3 rounded" placeholder="Select Date">
                 <input type="time" class="form-input border mt-2  col-start-4 col-span-2 px-9 py-3 rounded" placeholder="Select Time">
                 <input type="text" class="form-input border col-start-2 col-span-4 mt-2  hover:bg-gray-200 focus:bg-white px-5 py-3 rounded" placeholder="Enter Your Workout">
-                <button type="submit" class="bg-blue-700  hover:from-black hover:to-blue-800 mt-2 col-start-3 col-span-2 py-3 justify-center text-white px-6 rounded ">Schedule Workout</button>
+                <button type="submit" class="bg-gradient-to-r from-black to-blue-600 text-white px-6 py-2 rounded hover:from-blue-600 hover:to-black w-60">Schedule Workout</button>
                 </div>
             </form>
         </div>
 
-        <!-- Progress Tracker -->
-        <div class="my-8 text-center">
-            <h2 class="text-4xl font-semibold text-gray-800">Track Your Progress</h2>
-            <div id="progressTracker" class="mt-4">
-                <!-- Dynamic content: Charts or tables to display progress can be added here -->
-                <p class="text-gray-600">Your progress charts will appear here (implement with JS and charting library).</p>
-            </div>
-        </div>
-
          <!-- Scheduled Workouts List -->
-    <div class="grid grid-cols-4 my-8 text-center">
-        <h2 class="text-4xl col-span-4 font-semibold text-gray-800">Scheduled Workouts</h2>
-        <div id="scheduledWorkoutsList" class="mt-4">
+    <div class="grid grid-cols-5 my-8 text-center">
+        <h2 class="text-4xl col-span-5 font-semibold text-gray-800">Scheduled Workouts</h2>
+        <div id="scheduledWorkoutsList" class="mt-4 col-start-3">
             {{#each scheduledWorkouts}}
                 <div class="text-black col-span-2 border">
                     <div>Workout: {{this.workout}}</div>
@@ -93,6 +84,8 @@
 </script>
 
     <script src="/js/myworkouts.js"></script>
+    <script src="/js/logout.js"></script>
+
 </body>
 </html>
 

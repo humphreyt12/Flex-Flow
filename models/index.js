@@ -32,4 +32,4 @@ Notification.belongsTo(User, {
   as: 'user',
 });
 
-module.exports = { User, Workout, Diet };
+module.exports = { User, Workout, Diet, Notification };

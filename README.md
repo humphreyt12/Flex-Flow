@@ -28,7 +28,7 @@ npm i
 To use this app create an account to login, then add your own workouts and diets.
 
 ## Collaboration
-The contributors for this project are Devonte Williams, Grant Williams, Tina Humphrey, and Claudio Castrillo.
+The contributors for this project are Devonte Miller, Grant Williams, Tina Humphrey, and Claudio Castrillo.
  
 ## License
 This project uses a MIT license 

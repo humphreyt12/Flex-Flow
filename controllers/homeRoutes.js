@@ -1,8 +1,9 @@
 const router = require('express').Router();
 /*const express = require('express')
 const app = express()*/
-const { Diet, User, Workout, } = require('../models');
+const { Diet, User, Workout, Notification } = require('../models');
 const withAuth = require('../utils/auth');
+
 
 router.get('/', async (req, res) => {
   try {
@@ -42,10 +43,6 @@ router.get('/workout/:id', async (req, res) => {
           model: Workout,
           include: [User]
         },
-        {
-          model: Diet,
-          include: [User]
-        },
       ],
     });
 
@@ -58,6 +55,60 @@ router.get('/workout/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+
+router.get('/', async (req, res) => {
+  try {
+    // Get all diets and JOIN with user data
+    const dietData = await Diet.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+
+// Serialize data so the template can read it
+const diets = dietData.map((diet) => diet.get({ plain: true }));
+
+// Pass serialized data and session flag into template
+res.render('mydiet',{ layout: false,
+  diets,
+  logged_in: req.session.logged_in 
+});
+} catch (err) {
+res.status(500).json(err);
+}
+});
+
+//GET response by workout id
+router.get('/diet/:id', async (req, res) => {
+try {
+const dietData = await Diet.findByPk(req.params.id, {
+  include: [
+    {
+      model: User,
+      attributes: ['name'],
+    },
+    {
+      model: Diet,
+      include: [User]
+    },
+  ],
+});
+
+const diet = dietData.get({ plain: true });
+//Creating the workouts 
+res.render('diet', { layout: false,
+  ...diet,
+  logged_in: req.session.logged_in
+});
+} catch (err) {
+res.status(500).json(err);
+}
 });
 
 // Use withAuth middleware to prevent access to route
@@ -128,7 +179,10 @@ router.get('/dietplans', (req, res) => {
 });
 
 
-
+router.get('/mynotifications', (req, res) => {
+  console.log('About to render notifications');
+  res.render('mynotifications', { layout: false }); // Example without using a layout
+});
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route

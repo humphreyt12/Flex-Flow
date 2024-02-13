@@ -27,7 +27,7 @@
 
         // Append the new workout to the list
         const workoutDiv = document.createElement('div');
-workoutDiv.classList.add( 'grid', 'grid-col-4', 'col-span-2', 'bg-gray-100', 'p-4', 'rounded-lg', 'shadow-md', 'mb-4', 'text-black', 'font-semibold', 'text-lg',  'justify-between', 'items-center');
+workoutDiv.classList.add( 'col-span-2', 'bg-gray-100', 'p-4', 'rounded-lg', 'shadow-md', 'mb-4', 'text-black', 'font-semibold', 'text-lg',  'justify-between', 'items-center');
 workoutDiv.innerHTML = `
   <div class="workout-info">
     <div>Workout: ${workoutName}</div>
@@ -66,6 +66,5 @@ scheduledWorkoutsList.appendChild(workoutDiv);
       // Remove the parent <li> element of the delete button
       e.target.parentNode.remove();
     }
-  
   });
     

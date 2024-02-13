@@ -5,7 +5,8 @@ const { User, Workout, Diet } = require('../models');
 const userData = require('./userData.json');
 const workoutData = require('./workoutData.json');
 const dietData = require('./dietData.json');
-
+try {
+  // Your seeding logic here
 //Forcing the models and recreating their data
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -22,11 +23,17 @@ const seedDatabase = async () => {
     });
   }
 
-  const diets = await Diet.bulkCreate(dietData, {
-    returning: true,
-  });
+  for (const diet of dietData) {
+    await Diet.create({
+      ...diet,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
+    });
+  }
 
   process.exit(0);
 };
-
 seedDatabase();
+
+} catch (error) {
+  console.error('Seeding failed:', error);
+}
