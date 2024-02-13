@@ -2,38 +2,37 @@ const router = require('express').Router();
 const { Diet } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// //GET request for all diets
-// router.get('/', (req,res) => {
-//     Diet.findAll({})
-//     .then(dietData => res.json(dietData))
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err)
-//     });
-// });
-// // GET request by id
-// router.get('/:id', (req, res) => {
-//     Diet.findAll({
-//             where: {
-//                 id: req.params.id
-//             }
-//         })
-//         .then(DietData => res.json(DietData))
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         })
-// });
+//GET request for all diets
+router.get('/', (req,res) => {
+    Diet.findAll({})
+    .then(dietData => res.json(dietData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err)
+    });
+});
+// GET request by id
+router.get('/:id', (req, res) => {
+    Diet.findAll({
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(DietData => res.json(DietData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+});
 
 //POST request for new diet
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newDiet = await Diet.create({
       ...req.body,
       user_id: req.session.user_id,
     });
-
-    res.status(200).json(newDiet);
+    res.json(newDiet);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -58,5 +57,4 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 module.exports = router;
