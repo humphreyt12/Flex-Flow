@@ -51,14 +51,14 @@ const dietFormHandler = async (event) => {
     }
   };
   
-  document.addEventListener('DOMContentLoaded', (event) => {
+
     const form = document.querySelector('.dietPlanForm');
     if(form) {
         form.addEventListener('submit', dietFormHandler);
     } else {
         console.error('Form not found');
     }
-});
+
 
   // Event listener for delete buttons
   document.getElementById('dietPlansList').addEventListener('click', function(e) {

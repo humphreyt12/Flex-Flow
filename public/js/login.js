@@ -1,4 +1,4 @@
-// document.addEventListener('DOMContentLoaded', (event) => {
+
 
 const loginFormHandler = async (event) => {
     event.preventDefault();
@@ -38,4 +38,4 @@ const loginFormHandler = async (event) => {
 
 
 
-// });
+
