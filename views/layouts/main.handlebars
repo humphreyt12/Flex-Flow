@@ -8,14 +8,25 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="w-full h-screen" style= "background-image: url('assets/background image for login page.svg'); background-size: cover; background-position: center;"> 
-
-    <!-- Container -->
+    <header>
+        <nav class="shadow-md">
+            <span class="top-0 mt-2 left-0 flex h-12">
+                <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class=" w-100">
+            </span>
+        </nav>
+    </header>
+    <main>
+        {{{body}}}
+    </main>
+  
+    <footer class="flex items-center space-x-72 mt-14 justify-center">
+          
+        <a href="/signup" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Create Account</a>
+        <a href="/help" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Need Help?</a>
+    </footer>
+    {{!-- <!-- Container -->
    
-            <nav class="shadow-md">
-        <span class="top-0 mt-2 left-0 flex h-12">
-            <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class=" w-100">
-        </span>
-    </nav>
+    
     <div class="space-y-4">
         <!-- Welcome Text -->
         <div class="relative flex flex-col items-center justify-center mt-14 mb-16">
@@ -60,11 +71,10 @@
 
         <!-- Footer Links -->
         
-        <div class="flex items-center space-x-72 mt-14 justify-center">
-            <a href="/signup" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Create Account</a>
-            <a href="/help" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Need Help?</a>
+        <div >
+         
         </div>
-    </div>
-    <script src="/js/login.js"></script>
+    </div> --}}
+
 </body>
 </html>

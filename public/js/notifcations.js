@@ -1,6 +1,4 @@
-//const router = require("../../controllers");
 
-//const withAuth = require("../../utils/auth");
 
 console.log('trees')
 

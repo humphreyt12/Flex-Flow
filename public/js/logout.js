@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+
   // Select the logout link by its ID or another unique selector
   const logoutLink = document.querySelector('#logoutLink');
 
@@ -33,4 +33,4 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     console.error('Logout link not found'); // If the logout link is not found
   }
-});
+

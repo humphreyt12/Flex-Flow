@@ -52,14 +52,14 @@ scheduledWorkoutsList.appendChild(workoutDiv);
   };
     
   // Add event listener to the form submission
- document.addEventListener('DOMContentLoaded', (event) => {
+
     const form = document.querySelector('.scheduleForm');
     if(form) {
         form.addEventListener('submit', scheduleFormHandler);
     } else {
         console.error('Form not found');
     }
-});
+
 
   document.getElementById('scheduledWorkoutsList').addEventListener('click', function(e) {
     if (e.target && e.target.classList.contains('delete-btn')) {
@@ -67,4 +67,6 @@ scheduledWorkoutsList.appendChild(workoutDiv);
       e.target.parentNode.remove();
     }
   });
+
+  
     
