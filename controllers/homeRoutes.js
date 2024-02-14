@@ -1,6 +1,5 @@
 const router = require('express').Router();
-/*const express = require('express')
-const app = express()*/
+
 const { Diet, User, Workout, Notification } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -110,7 +109,7 @@ const dietData = await Diet.findByPk(req.params.id, {
 
 const diet = dietData.get({ plain: true });
 //Creating the workouts 
-res.render('diet', { layout: false,
+res.render('diet', { 
   ...diet,
   logged_in: req.session.logged_in
 });
