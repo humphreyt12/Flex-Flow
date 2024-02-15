@@ -65,31 +65,7 @@ router.get('/workout/:id', async (req, res) => {
 });
 
 
-// router.get('/', async (req, res) => {
-//   try {
-//     // Get all diets and JOIN with user data
-//     const dietData = await Diet.findAll({
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
 
-
-// // Serialize data so the template can read it
-// const diets = dietData.map((diet) => diet.get({ plain: true }));
-
-// // Pass serialized data and session flag into template
-// res.render('mydiet',{ layout: false,
-//   diets,
-//   logged_in: req.session.logged_in 
-// });
-// } catch (err) {
-// res.status(500).json(err);
-// }
-// });
 
 //GET response by workout id
 router.get('/diet/:id', async (req, res) => {
@@ -163,6 +139,10 @@ router.get('/help', (req, res) => {
   res.render('help'); // Example without using a layout
 });
 
+router.get('/homepage', (req, res) => {
+  console.log('About to render homepage');
+  res.render('homepage'); 
+});
 
 router.get('/myworkouts', (req, res) => {
   console.log('About to render myworkouts');
