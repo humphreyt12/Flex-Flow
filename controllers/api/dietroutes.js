@@ -2,28 +2,54 @@ const router = require('express').Router()
 const { Diet } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+router.get('/', async (req, res) => {
+  try {
+    // Get all diets and JOIN with user data
+    const dietData = await Diet.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+
+// Serialize data so the template can read it
+const diets = dietData.map((diet) => diet.get({ plain: true }));
+
+// Pass serialized data and session flag into template
+res.render('mydiet',{ layout: false,
+  diets,
+  logged_in: req.session.logged_in 
+});
+} catch (err) {
+res.status(500).json(err);
+}
+});
+
 //GET request for all diets
 router.get('/', (req,res) => {
-    Diet.findAll({})
-    .then(dietData => res.json(dietData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err)
-    });
+  Diet.findAll({})
+  .then(dietData => res.json(dietData))
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err)
+  });
 });
-// GET request by id
-router.get('/:id', (req, res) => {
-    Diet.findAll({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then(DietData => res.json(DietData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        })
-});
+// // GET request by id
+// router.get('/:id', (req, res) => {
+//     Diet.findAll({
+//             where: {
+//                 id: req.params.id
+//             }
+//         })
+//         .then(DietData => res.json(DietData))
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         })
+// });
 
 //POST request for new diet
 router.post('/', async (req, res) => {
@@ -37,7 +63,6 @@ router.post('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 //DELTE request by id 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
