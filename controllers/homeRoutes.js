@@ -70,7 +70,7 @@ router.get('/homepage', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Workout }, { model: Diet }, {model: Notification}], // Ensure models are properly included
+      include: [{ model: Workout }, { model: Diet }, {model: Notification, as:'Notification'}], // Ensure models are properly included
     });
 
     if (!userData) {
@@ -94,6 +94,7 @@ router.get('/homepage', withAuth, async (req, res) => {
     res.status(500).json({ message: 'Internal server error', error: err.message });
   }
 });
+
 
 
 router.get('/signup', (req, res) => {
@@ -127,13 +128,13 @@ router.get('/dietplans', (req, res) => {
   res.render('dietplans', { layout: false }); // Example without using a layout
 });
 
-/*
+
 router.get('/mynotifications', (req, res) => {
   console.log('About to render notifications');
   res.render('mynotifications', { layout: false }); // Example without using a layout
 });
-*/
 
+/*
 router.get('/mynotifications', withAuth, async (req, res) => {
   try {
     const userId = req.session.userId; // Or req.session.user_id, based on your session setup
@@ -158,7 +159,7 @@ router.get('/mynotifications', withAuth, async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
+*/
 
 
 

@@ -37,3 +37,22 @@
 //         });
 //     }, 0); // Using setTimeout with 0 delay as a simple way to wait for the dynamic content
 // });
+
+function checkSessionAndProceed() {
+    fetch('/api/session', { credentials: 'include' }) // Make sure to include credentials for cookies to be sent
+      .then(response => response.json())
+      .then(data => {
+        if (data.loggedIn) {
+          console.log('User is logged in. User ID:', data.user_id);
+          // Proceed with actions that require authentication
+        } else {
+          console.log('User is not logged in.');
+          // Redirect to login or disable certain actions
+        }
+      })
+      .catch(error => console.error('Error fetching session data:', error));
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    checkSessionAndProceed();
+  });

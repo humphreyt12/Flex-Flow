@@ -32,17 +32,28 @@ Notification.init(
       type: DataTypes.DATEONLY,
       allowNull: true, // Only needed for specificDate notification types
     },
-    userId: {
+    notificationColor: {
+      type: DataTypes.STRING,
+      allowNull: false, // Assuming color is optional
+    },
+    notificationIcon: {
+      type: DataTypes.STRING,
+      allowNull: false, // Assuming icon is optional
+    },
+    
+    user_id: {
       type: DataTypes.INTEGER,
+      allowNull:false,
       references: {
         model: 'user',
         key: 'id',
+        field: 'user_id', // This tells Sequelize the exact column name
       },
     },
   },
   {
     sequelize,
-    modelName: 'notification',
+    modelName: 'Notification',
     timestamps: true, // Add createdAt and updatedAt timestamps
     freezeTableName: true,
     underscored: true,

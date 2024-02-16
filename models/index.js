@@ -22,14 +22,15 @@ Diet.belongsTo(User, {
 });
 
 User.hasMany(Notification, {
-  foreignKey: 'userId',
-  as: 'notifications', // Alias for the association
+  foreignKey: 'user_id',
+  as: 'Notification', // Alias for the association
   onDelete: 'CASCADE'
 });
 
 Notification.belongsTo(User, {
-  foreignKey: 'userId',
-  as: 'user',
+  foreignKey: 'user_id',
+  as: 'user'
 });
 
-module.exports = { User, Workout, Diet };
+module.exports = { User, Workout, Diet, Notification};
+

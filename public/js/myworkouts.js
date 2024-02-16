@@ -1,4 +1,4 @@
-//document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const scheduleFormHandler = async (event) => {
     event.preventDefault();
 
@@ -26,17 +26,15 @@
         }
 
         // Append the new workout to the list
-        const workoutDiv = document.createElement('div');
-        workoutDiv.classList.add( 'grid', 'grid-col-4', 'col-span-2', 'bg-gray-100', 'p-4', 'rounded-lg', 'shadow-md', 'mb-4', 'text-black', 'font-semibold', 'text-lg',  'justify-between', 'items-center');
-        workoutDiv.innerHTML = `
-          <div class="workout-info">
-            <div>Workout: ${workoutName}</div>
-            <div>Date: ${workoutDate}</div>
-            <div>Time: ${workoutTime}</div>
-          </div>
+        const li = document.createElement('li');
+        li.classList.add('text-black', 'semi-bold','text-lg', 'border', 'flex', 'justify-between', 'items-center');
+        li.innerHTML = `
+          <div>Workout: ${workoutName}</div>
+          <div>Date: ${workoutDate}</div>
+          <div>Time: ${workoutTime}</div>
           <button class="delete-btn px-4 py-2 bg-red-500 text-white rounded">Delete</button>
         `;
-        scheduledWorkoutsList.appendChild(workoutDiv);
+        scheduledWorkoutsList.appendChild(li);
 
         // Reset form fields after submission
         document.querySelector('input[type="text"]').value = '';
@@ -51,14 +49,7 @@
   };
 
   // Add event listener to the form submission
-  document.addEventListener('DOMContentLoaded', (event) => {
-    const form = document.querySelector('.scheduleForm');
-    if(form) {
-        form.addEventListener('submit', scheduleFormHandler);
-    } else {
-        console.error('Form not found');
-    }
-});
+  document.getElementById('scheduleForm').addEventListener('submit', scheduleFormHandler);
 
   document.getElementById('scheduledWorkoutsList').addEventListener('click', function(e) {
     if (e.target && e.target.classList.contains('delete-btn')) {
@@ -66,4 +57,4 @@
       e.target.parentNode.remove();
     }
   });
-
+});
