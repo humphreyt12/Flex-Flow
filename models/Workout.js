@@ -22,7 +22,7 @@ Workout.init(
       defaultValue: DataTypes.NOW
     },
      time: {
-      type: DataTypes.DATE,
+      type: DataTypes.TIME,
       allowNull: false,
       defaultValue: DataTypes.NOW
     },

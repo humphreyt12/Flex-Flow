@@ -8,15 +8,46 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="w-full h-screen" style= "background-image: url('assets/background image for login page.svg'); background-size: cover; background-position: center;"> 
+  <header>
+        <nav class="shadow-md flex justify-between items-center py-1 px-6">
+            <span class="top-0 mt-2 left-0 flex h-12">
+                <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class=" w-100">
+            </span>
+                   <!-- Navigation -->
+       <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white  bg-gradient-to-r from-blue-600 hover:from-gray-400 hover:to-blue-700 to-black  focus:outline-none font-medium rounded-lg text-base top-0 px-12 mb-3 mr-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button">
+    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+    </svg>
+        </button>
+     </nav>
+<div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+    <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+        <li>
+            <a href="/homepage" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
+        </li>
+        <li>
+            <a href="/mynotifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
+        </li>
+        <li>
+            <a href="/logout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
+        </li>
+    </ul>
+</div>
+    </header>
+    <main>
+        {{{body}}}
+    </main>
 
-    <!-- Container -->
+<script src="/js/dropdown.js"></script>
+    {{!-- <footer class="flex items-center space-x-72 mt-14 justify-center">
+          
+        <a href="/signup" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Create Account</a>
+        <a href="/help" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Need Help?</a>
+    </footer> --}}
+    {{!-- <!-- Container -->
    
-            <nav class="shadow-md">
-        <span class="top-0 mt-2 left-0 flex h-12">
-            <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class=" w-100">
-        </span>
-    </nav>
-    <div class="space-y-4">
+
+<div class="space-y-4">
         <!-- Welcome Text -->
         <div class="relative flex flex-col items-center justify-center mt-14 mb-16">
             <ul class="text-5xl text-center font-bold mb-4"><li>Welcome Back</li> <li class="text-5xl mb-3 font-medium">Our Gym Member!</li></ul>
@@ -38,8 +69,8 @@
                     </span>
                 </div>
             </div>
-        </div>
 
+        </div>
             <!-- Password Input -->
             <div class="form-group flex flex-col items-center">
             <div class="relative">
@@ -60,11 +91,7 @@
 
         <!-- Footer Links -->
         
-        <div class="flex items-center space-x-72 mt-14 justify-center">
-            <a href="/signup" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Create Account</a>
-            <a href="/help" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Need Help?</a>
+            <div >
+         
         </div>
-    </div>
-    <script src="../../public/js/login.js"></script>
-</body>
-</html>
+            </div> --}}

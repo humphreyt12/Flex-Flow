@@ -1,4 +1,4 @@
-//document.addEventListener('DOMContentLoaded', (event) => {
+
 
       
       const signupFormHandler = async (event) => {

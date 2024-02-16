@@ -1,8 +1,8 @@
 const router = require('express').Router();
-/*const express = require('express')
-const app = express()*/
+
 const { Diet, User, Workout, Notification} = require('../models');
 const withAuth = require('../utils/auth');
+
 
 router.get('/', async (req, res) => {
   try {
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
     const workouts = workoutData.map((workout) => workout.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('myworkouts',{ layout: false,
+    res.render('myworkouts', {
       workouts,
       logged_in: req.session.logged_in 
     });
@@ -46,12 +46,16 @@ router.get('/workout/:id', async (req, res) => {
           model: Diet,
           include: [User]
         },
+        {
+          model: Notification,
+          include: [User]
+        },
       ],
     });
 
     const workout = workoutData.get({ plain: true });
     //Creating the workouts 
-    res.render('workout', { layout: false,
+    res.render('workout', {
       ...workout,
       logged_in: req.session.logged_in
     });
@@ -60,8 +64,38 @@ router.get('/workout/:id', async (req, res) => {
   }
 });
 
+
+
+
+//GET response by workout id
+router.get('/diet/:id', async (req, res) => {
+  try {
+  const dietData = await Diet.findByPk(req.params.id, {
+    include: [
+      {
+        model: User,
+        attributes: ['name'],
+      },
+      {
+        model: Diet,
+        include: [User]
+      },
+    ],
+  });
+  
+  const diet = dietData.get({ plain: true });
+  //Creating the workouts 
+  res.render('diet', { 
+    ...diet,
+    logged_in: req.session.logged_in
+  });
+  } catch (err) {
+  res.status(500).json(err);
+  }
+  });
+  
 // Use withAuth middleware to prevent access to route
-router.get('/homepage', withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   console.log('Accessing /homepage route'); // Log when route is accessed
 
   try {
@@ -84,8 +118,7 @@ router.get('/homepage', withAuth, async (req, res) => {
 
     //Creating the dashboard
     res.render('homepage', {
-      layout: false,
-      ...user, // Spread operator to pass user object properties as separate properties
+      user,
       logged_in: req.session.logged_in // Use req.session.logged_in directly
     });
 
@@ -96,72 +129,46 @@ router.get('/homepage', withAuth, async (req, res) => {
 });
 
 
-
 router.get('/signup', (req, res) => {
   console.log('About to render signup');
-  res.render('signup', { layout: false }); // Example without using a layout
+  res.render('signup'); // Example without using a layout
 });
 
 router.get('/help', (req, res) => {
   console.log('About to render help');
-  res.render('help', { layout: false }); // Example without using a layout
+  res.render('help'); // Example without using a layout
 });
 
+router.get('/homepage', (req, res) => {
+  console.log('About to render homepage');
+  res.render('homepage'); 
+});
 
 router.get('/myworkouts', (req, res) => {
   console.log('About to render myworkouts');
-  res.render('myworkouts', { layout: false }); 
+  res.render('myworkouts'); 
 });
 
 router.get('/mydiet', (req, res) => {
   console.log('About to render mydiet');
-  res.render('mydiet', { layout: false }); // Example without using a layout
+  res.render('mydiet'); // Example without using a layout
 });
 
 router.get('/methods', (req, res) => {
   console.log('About to render methods');
-  res.render('methods', { layout: false}); // Example without using a layout
+  res.render('methods'); // Example without using a layout
 });
 
 router.get('/dietplans', (req, res) => {
   console.log('About to render dietplans');
-  res.render('dietplans', { layout: false }); // Example without using a layout
+  res.render('dietplans'); // Example without using a layout
 });
 
 
 router.get('/mynotifications', (req, res) => {
   console.log('About to render notifications');
-  res.render('mynotifications', { layout: false }); // Example without using a layout
+  res.render('mynotifications'); // Example without using a layout
 });
-
-/*
-router.get('/mynotifications', withAuth, async (req, res) => {
-  try {
-    const userId = req.session.userId; // Or req.session.user_id, based on your session setup
-
-    const notificationData = await Notification.findAll({
-      where: {
-        userId: userId,
-      },
-    });
-
-    // Convert Sequelize objects to plain objects
-    const notifications = notificationData.map(notification => notification.get({ plain: true }));
-
-    // Render the Handlebars view and pass the notifications data
-    res.render('mynotifications', { // Assuming you have a 'notifications.handlebars' file in your views directory
-      notifications: notifications,
-      logged_in: req.session.logged_in,
-      // Include any other properties you need
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Server error');
-  }
-});
-*/
-
-
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -170,7 +177,7 @@ router.get('/login', (req, res) => {
     return;
   }
 
-  res.render('login',{ layout: false });
+  res.render('login');
 });
 
 

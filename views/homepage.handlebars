@@ -61,7 +61,7 @@
             <a href="/mynotifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
         </li>
         <li>
-            <a href="/logout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
+            <a href="javascript:void(0);" id="logoutLink" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
         </li>
     </ul>
 </div>
@@ -105,8 +105,8 @@
         <!-- Footer Links -->
         
  <script>
-    // Wait for the DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
+
+
         // Get the button and the dropdown menu
         const dropdownButton = document.getElementById('Dropdown');
         const dropdownMenu = document.getElementById('dropdown');
@@ -116,7 +116,7 @@
             // Toggle the 'hidden' class on the dropdown menu
             dropdownMenu.classList.toggle('hidden');
         });
-    });
+
 </script>
         
     <script src="/js/homepage.js"></script>
@@ -124,6 +124,6 @@
 
 <script src="/js/awesome-notifications.js"></script>
 
-</body>
-</html>
+<script src="/js/logout.js"></script>
+
 
