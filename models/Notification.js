@@ -32,11 +32,20 @@ Notification.init(
       type: DataTypes.DATEONLY,
       allowNull: true, // Only needed for specificDate notification types
     },
-    userId: {
+    notificationColor: {
+      type: DataTypes.STRING,
+      allowNull: false, // Assuming color is optional
+    },
+    notificationIcon: {
+      type: DataTypes.STRING,
+      allowNull: false, // Assuming icon is optional
+    },
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
         key: 'id',
+        field: 'user_id',
       },
     },
   },

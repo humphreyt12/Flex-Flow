@@ -27,7 +27,7 @@ router.post('/', withAuth ,async (req, res) => {
           specificDate: notificationType === 'specificDate' ? associatedDate : null,
           notificationColor,
           notificationIcon,
-          user_id // Associate the new notification with the logged-in user
+          user_id 
       });
 
       console.log('Created notification:', newNotification); // Log the newly created notification object
@@ -43,9 +43,9 @@ router.post('/', withAuth ,async (req, res) => {
 
 
 
-router.get('/api/notifications/', withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
-      const user_id = 1; // Assuming user_id is stored in the session upon login
+      const user_id = req.session.user_id ; // Assuming user_id is stored in the session upon login
       const notifications = await Notification.findAll({
           where: { user_id: user_id }
       });

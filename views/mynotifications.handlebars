@@ -1,19 +1,5 @@
 
 
-<div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-    <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-        <li>
-            <a href="/homepage" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
-        </li>
-        <li>
-            <a href="/mynotifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
-        </li>
-        <li>
-            <a href="/login" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
-        </li>
-    </ul>
-</div>
-
   <h1>My Notifications</h1>
 
 <div>
@@ -21,7 +7,7 @@
     <section>
       <h2> Notify me about:</h2>
       <!-- Editable field for the title -->
-      <input type="text" id="titleInput" placeholder="Enter title here" required />
+      <input type="text" id="titleInput" placeholder="Enter title here" maxlength="20" required />
     </section>
 
     <section>
@@ -56,10 +42,11 @@
     </section>
 
     <section>
-    <h2>Notification type:</h2>
+    <h2>Notification Color:</h2>
     <select id="colorSelector">
-      <option value="default">Default</option>
+      <option value="gray">Gray</option>
       <option value="red">Red</option>
+      <option value="orange">Orange</option>
       <option value="green">Green</option>
       <option value="blue">Blue</option>
       <!-- Add more color options here -->
@@ -69,9 +56,11 @@
   <section>
     <h2>Notification Icon:</h2>
     <select id="iconSelector">
-      <option value="defaultIcon">Default</option>
-      <option value="icon1">Icon 1</option>
-      <option value="icon2">Icon 2</option>
+      <option value="/assets/Dumbbell.png">Dumbbell</option>
+      <option value="/assets/sammich.png">Sandwich</option>
+      <option value="/assets/water.png">Water Bottle</option>
+      <option value="/assets/stretch.png">Stretch</option>
+      <option value="/assets/music.png">Music</option>
       <!-- Add more icon options here -->
     </select>
   </section>
@@ -81,55 +70,46 @@
 </div>
 
 <div id="notifications-container">
-<div id="notifications-container">
 
-<script id="notification-template" type="text/x-handlebars-template">
-  {{#each notifications}}
-  <div class="notification">
-    <h3>{{title}}</h3>
-    <p>{{message}}</p>
-    <p>Type: {{notificationType}}</p>
-    {{#if dayOfWeek}}
-      <p>Day of Week: {{dayOfWeek}}</p>
-    {{/if}}
-    {{#if specificDate}}
-      <p>Specific Date: {{specificDate}}</p>
-    {{/if}}
-    <p>Notification Icon: {{notificationIcon}}</p>
-    <p>Notification Color: {{notificationColor}}</p>
-    <button class="update-btn" data-id="{{id}}">Update</button>
-    <button class="delete-btn" data-id="{{id}}">Delete</button>
-  </div>
-{{else}}
-  <p>No notifications found.</p>
-{{/each}}
 
-</script>
+
+ {{#each notifications}}
+          <div class="notification" data-id="{{this.id}}">
+            <h3 class="title-display">{{this.title}}</h3>
+            <input type="text" class="title-input" value="{{this.title}}" style="display: none;">
+            
+            <p class="message-display">{{this.message}}</p>
+            <textarea class="message-input" style="display: none;">{{this.message}}</textarea>
+            <div></div>
+            <p>Type: {{this.notificationType}}</p>
+            {{#if this.dayOfWeek}}
+              <p>Day of Week: {{this.dayOfWeek}}</p>
+            {{/if}}
+            {{#if this.specificDate}}
+              <p>Specific Date: {{this.specificDate}}</p>
+            {{/if}}
+            <p>Notification Icon: {{this.notificationIcon}}</p>
+            <p>Notification Color: {{this.notificationColor}}</p>
+            <button class="edit-btn">Edit</button>
+            <button class="save-btn" style="display: none;">Save</button>
+            <button class="delete-btn" data-id="{{this.id}}">Delete</button>
+          </div>
+        {{else}}
+          <p>No notifications found.</p>
+        {{/each}}
 
 
 </div>
 
-<script>
-        
+<button class="btn" onclick="notifier.success('This is an example of tip')">Try me</button>
 
 
-   
-        // Get the button and the dropdown menu
-        const dropdownButton = document.getElementById('Dropdown');
-        const dropdownMenu = document.getElementById('dropdown');
-
-        // Add click event listener to the button
-        dropdownButton.addEventListener('click', function() {
-            // Toggle the 'hidden' class on the dropdown menu
-            dropdownMenu.classList.toggle('hidden');
-        });
-    
-</script>
 
 <script src="/js/notifcations.js"></script>
 
-   
+<script src="/js/awesome-notifications.js"></script>
 
+   
 
 
 
