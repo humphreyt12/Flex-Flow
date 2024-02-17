@@ -1,15 +1,17 @@
 
 
 console.log('trees')
-document.addEventListener('domcontentloaded', function() {
-//this event listener may be pointless but it creates block scope for these identifiers or else errors occur DO NOT TOUCH THIS LISTENER
-  let specificDay = document.getElementById('specificDay');
-  let specificDate = document.getElementById('specificDate');
-  let dayOfWeek = document.getElementById('dayOfWeek');
-  let CalendarDate = document.getElementById('CalendarDate');
-  let onReopen = document.getElementById('onReopen')
+
+
+  
 
   function updateInputFields() {
+    let specificDay = document.getElementById('specificDay');
+    let specificDate = document.getElementById('specificDate');
+    let dayOfWeek = document.getElementById('dayOfWeek');
+    let CalendarDate = document.getElementById('CalendarDate');
+    let onReopen = document.getElementById('onReopen')
+
     if (specificDay.checked) {
       dayOfWeek.style.display = 'block';
       CalendarDate.style.display = 'none';
@@ -97,7 +99,7 @@ function saveFormData() {
   });
   console.log(formData)
 }
-})
+
 
 function getIconLabel(iconPath) {
   const iconMap = {
@@ -134,29 +136,42 @@ async function fetchAndRenderNotifications() {
       // Directly defining the Handlebars template string within the JavaScript
       const templateString = `
       {{#each notifications}}
-      <div class="notification" data-id="{{this.id}}">
-        <h3 class="title-display">{{this.title}}</h3>
-        <input type="text" class="title-input" value="{{this.title}}" style="display: none;">
-        
-        <p class="message-display">{{this.message}}</p>
-        <textarea class="message-input" style="display: none;">{{this.message}}</textarea>
-        <div></div>
-        <p>Type: {{this.notificationType}}</p>
-        {{#if this.dayOfWeek}}
-          <p>Day of Week: {{this.dayOfWeek}}</p>
-        {{/if}}
-        {{#if this.specificDate}}
-          <p>Specific Date: {{this.specificDate}}</p>
-        {{/if}}
-        <p>Notification Icon: {{this.notificationIcon}}</p>
-        <p>Notification Color: {{this.notificationColor}}</p>
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        <button class="delete-btn" data-id="{{this.id}}">Delete</button>
-      </div>
-    {{else}}
-      <p>No notifications found.</p>
-    {{/each}}`;
+<div class="notification bg-white shadow-lg rounded-lg p-6 mb-4" data-id="{{this.id}}">
+  <h3 class="title-display text-xl font-semibold text-gray-800">{{this.title}}</h3>
+  
+  <!-- Hidden by default, shown when editing -->
+  <input type="text" class="title-input bg-gray-100 border border-gray-300 rounded p-2 text-gray-700 w-full mt-2" value="{{this.title}}" style="display: none;">
+  
+  <p class="message-display mt-2 text-gray-600">{{this.message}}</p>
+  
+  <!-- Hidden by default, shown when editing -->
+  <textarea class="message-input bg-gray-100 border border-gray-300 rounded p-2 text-gray-700 w-full mt-2" style="display: none;">{{this.message}}</textarea>
+  
+  <div class="mt-4"></div>
+  
+  <p class="notificationType font-medium text-gray-600">Type: {{this.notificationType}}</p>
+  
+  {{#if this.dayOfWeek}}
+  <p class="dayOfWeek text-gray-600">Day of Week: {{this.dayOfWeek}}</p>
+  {{/if}}
+  
+  {{#if this.specificDate}}
+  <p class="specificDate text-gray-600">Specific Date: {{this.specificDate}}</p>
+  {{/if}}
+  
+  <p class="notificationIcon text-gray-600">Notification Icon: {{this.notificationIcon}}</p>
+  <p class="notificationColor text-gray-600">Notification Color: {{this.notificationColor}}</p>
+  
+  <div class="flex items-center justify-start space-x-2 mt-4">
+    <button class="edit-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Edit</button>
+    <button class="save-btn bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" style="display: none;">Save</button>
+    <button class="delete-btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Delete</button>
+  </div>
+</div>
+{{else}}
+<p class="text-gray-600 text-center py-4">No notifications found.</p>
+{{/each}}
+`;
 
       const template = Handlebars.compile(templateString);
 

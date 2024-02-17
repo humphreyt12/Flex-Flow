@@ -13,13 +13,26 @@
 ## Description 
 A workout manager that allows users to create their workout plan & diet
 
+<img src="./public/assets/loginpage.png" alt="Login Page Screenshot"/>
+
+<img src="./public/assets/hompage.png" alt="Homepage Screenshot"/>
+
+<img src="./public/assets/scheduledworkouts.png" alt="Schedule Workouts Page Screenshot"/>
+
+<img src="./public/assets/scheduleddiets.png" alt="Schedule Diets Page Screenshot"/>
+
+<img src="./public/assets/dietplansuggestions.png" alt="Diet Plan Suggestions Page Screenshot"/>
+
+<img src="./public/assets/workoutmethods.png" alt="Workout Methods Page Screenshot"/>
+
 ## User-Story
 As a user I want a simple and easy to use app to log my workouts so I can keep track of my progress as I get stronger.
 
 ## Website-Link
 Click the Heroku app link to view the application's website. 
 
-(link will be added soon)
+https://afternoon-ocean-20932-c0392ecfa34c.herokuapp.com/
+
 
 ## Presentation
 
