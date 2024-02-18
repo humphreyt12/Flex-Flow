@@ -1,106 +1,125 @@
 
 
 
-  <h1>My Notifications</h1>
+<h1 class="text-4xl font-semibold text-gray-800 mb-6 text-center">My Notifications</h1>
 
-<div>
-<form id="notificationForm">
-    <section>
-      <h2> Notify me about:</h2>
-      <!-- Editable field for the title -->
-      <input type="text" id="titleInput" placeholder="Enter title here" required />
+<div class="max-w-4xl mx-auto">
+  <form id="notificationForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <section class="mb-4">
+      <h2 class="text-lg text-gray-600 font-semibold mb-2">Notify me about:</h2>
+      <input type="text" id="titleInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter title here" maxlength="20" required />
     </section>
 
-    <section>
-      <h2>My notification:</h2>
-      <!-- Editable field for the message -->
-      <textarea id="messageInput" rows="4" cols="50" placeholder="Enter message here"></textarea>
+    <section class="mb-4">
+      <h2 class="text-lg font-semibold mb-2">My notification:</h2>
+      <textarea id="messageInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" rows="4" cols="50" placeholder="Enter message here"></textarea>
     </section>
 
-    <section>
-      <h2>Notification setting</h2>
-        <input type ='checkbox' id="onReopen">On Page Re-open</input>
-        <input type ='checkbox' id="specificDay">Specific Day</input>
-        <input type ='checkbox' id="specificDate">Specific Date</input>
+    <section class="mb-4">
+      <h2 class="text-lg font-semibold mb-2">Notification setting:</h2>
+      <label class="inline-flex items-center">
+        <input type="checkbox" id="onReopen" class="form-checkbox text-indigo-600">
+        <span class="ml-2">On Page Re-open</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="checkbox" id="specificDay" class="form-checkbox text-indigo-600">
+        <span class="ml-2">Specific Day</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="checkbox" id="specificDate" class="form-checkbox text-indigo-600">
+        <span class="ml-2">Specific Date</span>
+      </label>
     </section>
 
-    <section>
-      <select id="dayOfWeek" style="display: none;">
-        <option value="">Select a day...</option> 
-        <option value="Sunday">Sunday</option>
-        <option value="Monday">Monday</option>
-        <option value="Tuesday">Tuesday</option>
-        <option value="Wednesday">Wednesday</option> 
-        <option value="Thursday">Thursday</option>
-        <option value="Friday">Friday</option>
-        <option value="Saturday">Saturday</option>
+    <section class="mb-4">
+      <select id="dayOfWeek" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" style="display: none;">
+        <option value="">Select a day...</option>
+        <!-- Options here -->
       </select>
     </section>
-    
 
-    <section>
-      <input type="date" id="CalendarDate" style="display: none;" placeholder="Specific Date (YYYY-MM-DD)"/>
+    <section class="mb-4">
+      <input type="date" id="CalendarDate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" style="display: none;" placeholder="Specific Date (YYYY-MM-DD)"/>
     </section>
 
-    <section>
-    <h2>Notification type:</h2>
-    <select id="colorSelector">
-      <option value="default">Default</option>
-      <option value="red">Red</option>
-      <option value="green">Green</option>
-      <option value="blue">Blue</option>
-      <!-- Add more color options here -->
-    </select>
-  </section>
+    <section class="mb-4">
+      <h2 class="text-lg font-semibold mb-2">Notification Color:</h2>
+      <select id="colorSelector" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+        <option value="gray">Gray</option>
+        <option value="red">Red</option>
+        <option value="orange">Orange</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+      </select>
+    </section>
 
-  <section>
-    <h2>Notification Icon:</h2>
-    <select id="iconSelector">
-      <option value="defaultIcon">Default</option>
-      <option value="icon1">Icon 1</option>
-      <option value="icon2">Icon 2</option>
-      <!-- Add more icon options here -->
-    </select>
-  </section>
-</form>
-<button type="button" onclick="saveFormData()">Save Notification</button>
+    <section class="mb-4">
+      <h2 class="text-lg font-semibold mb-2">Notification Icon:</h2>
+      <select id="iconSelector" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+        <option value="/assets/Dumbbell.png">Dumbbell</option>
+        <option value="/assets/sammich.png">Sandwich</option>
+        <option value="/assets/water.png">Water Bottle</option>
+        <option value="/assets/stretch.png">Stretch</option>
+        <option value="/assets/music.png">Music</option>
+      </select>
+    </section>
 
+    <button type="button" onclick="saveFormData()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+      Save Notification
+    </button>
+  </form>
 </div>
 
-<div id="notifications-container">
-<div id="notifications-container">
+<div id="notifications-container" class="max-w-4xl mx-auto mt-8">
 
-<script id="notification-template" type="text/x-handlebars-template">
-  {{#each notifications}}
-  <div class="notification">
-    <h3>{{title}}</h3>
-    <p>{{message}}</p>
-    <p>Type: {{notificationType}}</p>
-    {{#if dayOfWeek}}
-      <p>Day of Week: {{dayOfWeek}}</p>
-    {{/if}}
-    {{#if specificDate}}
-      <p>Specific Date: {{specificDate}}</p>
-    {{/if}}
-    <p>Notification Icon: {{notificationIcon}}</p>
-    <p>Notification Color: {{notificationColor}}</p>
-    <button class="update-btn" data-id="{{id}}">Update</button>
-    <button class="delete-btn" data-id="{{id}}">Delete</button>
+
+ {{#each notifications}}
+<div class="notification bg-white shadow-lg rounded-lg p-6 mb-4" data-id="{{this.id}}">
+  <h3 class="title-display text-xl font-semibold text-gray-800">{{this.title}}</h3>
+  
+  <!-- Hidden by default, shown when editing -->
+  <input type="text" class="title-input bg-gray-100 border border-gray-300 rounded p-2 text-gray-700 w-full mt-2" value="{{this.title}}" style="display: none;">
+  
+  <p class="message-display mt-2 text-gray-600">{{this.message}}</p>
+  
+  <!-- Hidden by default, shown when editing -->
+  <textarea class="message-input bg-gray-100 border border-gray-300 rounded p-2 text-gray-700 w-full mt-2" style="display: none;">{{this.message}}</textarea>
+  
+  <div class="mt-4"></div>
+  
+  <p class="notificationType font-medium text-gray-600">Type: {{this.notificationType}}</p>
+  
+  {{#if this.dayOfWeek}}
+  <p class="dayOfWeek text-gray-600">Day of Week: {{this.dayOfWeek}}</p>
+  {{/if}}
+  
+  {{#if this.specificDate}}
+  <p class="specificDate text-gray-600">Specific Date: {{this.specificDate}}</p>
+  {{/if}}
+  
+  <p class="notificationIcon text-gray-600">Notification Icon: {{this.notificationIcon}}</p>
+  <p class="notificationColor text-gray-600">Notification Color: {{this.notificationColor}}</p>
+  
+  <div class="flex items-center justify-start space-x-2 mt-4">
+    <button class="edit-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Edit</button>
+    <button class="save-btn bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" style="display: none;">Save</button>
+    <button class="delete-btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Delete</button>
   </div>
+</div>
 {{else}}
-  <p>No notifications found.</p>
+<p class="text-gray-600 text-center py-4">No notifications found.</p>
 {{/each}}
 
-</script>
 
 
 </div>
 
+<button class="btn bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="notifier.success('This is an example of tip')">Try me</button>
+
+
 <script>
-        
 
 
-   
         // Get the button and the dropdown menu
         const dropdownButton = document.getElementById('Dropdown');
         const dropdownMenu = document.getElementById('dropdown');
@@ -110,13 +129,17 @@
             // Toggle the 'hidden' class on the dropdown menu
             dropdownMenu.classList.toggle('hidden');
         });
-    
+
 </script>
+<script src="/js/logout.js"></script>
 
 <script src="/js/notifcations.js"></script>
 
-   
+<script src="/js/awesome-notifications.js"></script>
 
+
+
+   
 
 
 

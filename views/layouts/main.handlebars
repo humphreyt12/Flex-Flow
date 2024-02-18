@@ -5,8 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flex Flow Workout Manager</title>
     <!-- Including Tailwind CSS from CDN -->
+    <link rel="stylesheet" href="/src/all.css"></link>
+    <link rel="stylesheet" href="/src/notifs.css"></link>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="/js/index.var.js"></script>
+    <script src="/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/awesome-notifications@latest/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+    
+<script>
+  new Promise((resolve, reject) => {
+      let tag = document.createElement('script');
+      tag.src = "/js/index.var.js";
+      tag.async = true;
+      tag.onload = () => {
+          resolve();
+      };
+
+      let firstScript = document.getElementsByTagName('script')[0]
+      firstScript.parentNode.insertBefore(tag, firstScript);
+  }).then(() => {
+      notifier = new AWN({
+          maxNotifications: 6,
+          durations: {
+              global: 60000}
+          }
+      )    
+  });
+  
+</script>
 </head>
+
 <body class="w-full h-screen" style= "background-image: url('assets/background image for login page.svg'); background-size: cover; background-position: center;"> 
     <header>
         <nav class="shadow-md flex justify-between items-center py-1 px-6">
