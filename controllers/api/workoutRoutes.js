@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Workout } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+
 //POST request for new Workout
 router.post('/', withAuth, async (req, res) => {
   try {
@@ -36,5 +37,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 module.exports = router;

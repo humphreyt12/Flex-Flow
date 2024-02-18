@@ -1,24 +1,7 @@
-
-<div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-    <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-        <li>
-            <a href="/homepage" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
-        </li>
-        <li>
-            <a href="/mynotifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
-        </li>
-
-            <a href="javascript:void(0);" id="logoutLink" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
-        </li>
-    </ul>
-</div>
-
-
+        <!-- Form -->
     <form class="container mx-auto space-y-10 grid grid-cols-1 mt-20 ">
 
-
-        <!-- Form -->
-       <!-- {{!- my workouts button -}} -->
+<!-- {{!- my workouts button -}} -->
         <div class="items-left">
             <div class="relative">
                 <a href="/myworkouts" id="workouts" class="flex items-center justify-center transition ml-8 text-3xl font-medium text-white w-1/3 bg-gradient-to-r from-black to-blue-600 hover:from-gray-400 hover:to-blue-700 h-24  whitespace-nowrap text-center py-4 rounded-full border drop-shadow-lg border-gray-600">My Workouts</a>
@@ -27,7 +10,7 @@
                       <!-- {{!- my diets button -}} -->
           <div class="items-left">
             <div class="relative">
-                <a href="/mydiet" id="diets" class="flex items-center justify-center transition ml-8 text-3xl font-medium text-white bg-gradient-to-r from-black to-blue-600 w-1/3 hover:from-gray-400 hover:to-blue-700 h-24 text-center py-4 rounded-full border drop-shadow-lg border-gray-600">My Diets</a>
+                <a href="/mydiets" id="diets" class="flex items-center justify-center transition ml-8 text-3xl font-medium text-white bg-gradient-to-r from-black to-blue-600 w-1/3 hover:from-gray-400 hover:to-blue-700 h-24 text-center py-4 rounded-full border drop-shadow-lg border-gray-600">My Diets</a>
                     </span>
                 </div>
             </div>
@@ -49,24 +32,8 @@
 
     </form>
 
-        <!-- Footer Links -->
         
- <script>
-    // Wait for the DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the button and the dropdown menu
-        const dropdownButton = document.getElementById('Dropdown');
-        const dropdownMenu = document.getElementById('dropdown');
-
-        // Add click event listener to the button
-        dropdownButton.addEventListener('click', function() {
-            // Toggle the 'hidden' class on the dropdown menu
-            dropdownMenu.classList.toggle('hidden');
-        });
-    });
-</script>
+ 
         
-    <script src="/js/homepage.js"></script>
-    <script src="/js/logout.js"></script>
 
 

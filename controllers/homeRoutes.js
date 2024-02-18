@@ -1,126 +1,20 @@
 const router = require('express').Router();
-/*const express = require('express')
-const app = express()*/
 const { Diet, User, Workout, Notification } = require('../models');
 const withAuth = require('../utils/auth');
 
 
-router.get('/myworkouts', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    // Get all workouts and JOIN with user data
-    const workoutData = await Workout.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
-
-    // Serialize data so the template can read it
-    const workouts = workoutData.map((workout) => workout.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render('myworkouts', {
-      workouts,
-      logged_in: req.session.logged_in 
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-//GET response by workout id
-router.get('/workout/:id', async (req, res) => {
-  try {
-    const workoutData = await Workout.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-        {
-          model: Workout,
-          include: [User]
-        },
-        {
-          model: Diet,
-          include: [User]
-        },
-        {
-          model: Notification,
-          include: [User]
-        },
-      ],
-    });
-
-    const workout = workoutData.get({ plain: true });
-    //Creating the workouts 
-    res.render('workout', {
-      ...workout,
-      logged_in: req.session.logged_in
-    });
+    res.render('login');
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 
-// router.get('/', async (req, res) => {
-//   try {
-//     // Get all diets and JOIN with user data
-//     const dietData = await Diet.findAll({
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
-
-
-// // Serialize data so the template can read it
-// const diets = dietData.map((diet) => diet.get({ plain: true }));
-
-// // Pass serialized data and session flag into template
-// res.render('mydiet',{ layout: false,
-//   diets,
-//   logged_in: req.session.logged_in 
-// });
-// } catch (err) {
-// res.status(500).json(err);
-// }
-// });
-
-//GET response by workout id
-router.get('/diet/:id', async (req, res) => {
-try {
-const dietData = await Diet.findByPk(req.params.id, {
-  include: [
-    {
-      model: User,
-      attributes: ['name'],
-    },
-    {
-      model: Diet,
-      include: [User]
-    },
-  ],
-});
-
-const diet = dietData.get({ plain: true });
-//Creating the workouts 
-res.render('diet', { layout: false,
-  ...diet,
-  logged_in: req.session.logged_in
-});
-} catch (err) {
-res.status(500).json(err);
-}
-});
 
 // Use withAuth middleware to prevent access to route
-router.get('/', withAuth, async (req, res) => {
+router.get('/homepage', withAuth, async (req, res) => {
   console.log('Accessing /homepage route'); // Log when route is accessed
 
   try {
@@ -129,7 +23,7 @@ router.get('/', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Workout }, { model: Diet }, {model: Notification}], // Ensure models are properly included
+      include: [{model:Workout}, {model:Diet}]
     });
 
     if (!userData) {
@@ -141,7 +35,6 @@ router.get('/', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     console.log('User data for homepage:', user); // Log the user data being passed to the template
 
-    //Creating the dashboard
     res.render('homepage', {
       user, 
       logged_in: req.session.logged_in // Use req.session.logged_in directly
@@ -156,39 +49,110 @@ router.get('/', withAuth, async (req, res) => {
 
 router.get('/signup', (req, res) => {
   console.log('About to render signup');
-  res.render('signup'); // Example without using a layout
+  res.render('signup'); 
 });
 
 router.get('/help', (req, res) => {
   console.log('About to render help');
-  res.render('help'); // Example without using a layout
+  res.render('help'); 
+});
+
+router.get('/myworkouts', withAuth, async (req, res) => {
+  console.log('Accessing /myworkouts route'); 
+  
+  try {
+    console.log('Session User ID:', req.session.user_id); // Log session user ID
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Workout }],
+    });
+    console.log('User Data before rendering template:', userData); // Log user data before rendering template
+
+
+    if (!userData) {
+      console.log('No user data found'); // Log if user data is not found
+      res.render('myworkouts', {
+        logged_in: true,
+        user: null // Pass null user data to template
+      });
+      return;
+    }
+
+    console.log('Response Data:', {
+      user: userData.get({ plain: true }),
+      logged_in: true
+    });
+
+    const user = userData.get({ plain: true });
+    console.log('User Data for myworkouts:', user); // Log user data
+    
+    res.render('myworkouts', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    console.error('Error fetching user data:', err); // Log any errors
+    res.status(500).json(err);
+  }
 });
 
 
-router.get('/myworkouts', (req, res) => {
-  console.log('About to render myworkouts');
-  res.render('myworkouts'); 
-});
 
-router.get('/mydiet', (req, res) => {
-  console.log('About to render mydiet');
-  res.render('mydiet'); // Example without using a layout
+router.get('/mydiets', withAuth, async (req, res) => {
+  console.log('Accessing /mydiets route'); // Log when route is accessed
+  
+  try {
+    console.log('Session User ID:', req.session.user_id); // Log session user ID
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Diet }],
+    });
+    console.log('User Data before rendering template:', userData); // Log user data before rendering template
+
+
+    if (!userData) {
+      console.log('No user data found'); // Log if user data is not found
+      res.render('mydiets', {
+        logged_in: true,
+        user: null // Pass null user data to template
+      });
+      return;
+    }
+
+    console.log('Response Data:', {
+      user: userData.get({ plain: true }),
+      logged_in: true
+    });
+
+    const user = userData.get({ plain: true });
+    console.log('User Data for mydiets:', user); // Log user data
+    
+    res.render('mydiets', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    console.error('Error fetching user data:', err); // Log any errors
+    res.status(500).json(err);
+  }
 });
 
 router.get('/methods', (req, res) => {
   console.log('About to render methods');
-  res.render('methods'); // Example without using a layout
+  res.render('methods'); 
 });
 
 router.get('/dietplans', (req, res) => {
   console.log('About to render dietplans');
-  res.render('dietplans'); // Example without using a layout
+  res.render('dietplans'); 
 });
 
 
 router.get('/mynotifications', (req, res) => {
   console.log('About to render notifications');
-  res.render('mynotifications'); // Example without using a layout
+  res.render('mynotifications'); 
 });
 
 router.get('/login', (req, res) => {
@@ -200,20 +164,5 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
-
-
-
-
- 
-
-
-//If the user dose not have a login, redirect the page for the user to signup
-// router.get('/signUp', (req, res) => {
-//   if (req.session.logged_in) {
-//     res.redirect('/homepage');
-//     return;
-//   }
-//   res.render('signUp');
-// });
 
 module.exports = router;
