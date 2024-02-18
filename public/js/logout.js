@@ -4,32 +4,32 @@
 
   // Define the logout function
   const logout = async (event) => {
-    event.preventDefault(); // Prevent the default anchor action
-    console.log('Logout clicked'); // Confirm the click event triggers the function
+    event.preventDefault(); 
+    console.log('Logout clicked'); /
 
     try {
-      console.log('Preparing to send logout request'); // Before sending the fetch request
+      console.log('Preparing to send logout request'); 
       const response = await fetch('/api/users/logout', {
         method: "POST",
         credentials: "include"});
       
-      console.log('Logout request sent, response received', response); // After fetch executes
+      console.log('Logout request sent, response received', response); 
 
       if (response.ok) {
-        // Redirect to the desired location after successful logout
+        console.log('Logout successful');
         window.location.href='/login';
       } else {
         alert('Failed to log out');
       }
     } catch (error) {
-      console.error('Logout error:', error); // Catch any errors during fetch
+      console.error('Logout error:', error); 
     }
   };
 
-  // Add click event listener to the logout link
+  
   if (logoutLink) {
     logoutLink.addEventListener('click', logout);
   } else {
-    console.error('Logout link not found'); // If the logout link is not found
+    console.error('Logout link not found'); 
   }
 

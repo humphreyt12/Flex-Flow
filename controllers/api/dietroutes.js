@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Diet } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-//GET request for all diets
+
 router.get('/', (req,res) => {
     Diet.findAll({})
     .then(dietData => res.json(dietData))

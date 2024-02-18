@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const userRoutes = require('./userRoutes')
 const workoutRoutes = require('./workoutRoutes');
-const dietRoutes = require('./dietRoutes');
+const dietRoutes = require('./dietroutes');
 const notificationRoutes = require('./notificationRoutes')
 const sessionRoutes = require('./sessionRoutes')
 
