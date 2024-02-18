@@ -180,6 +180,19 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      // Handle error
+      console.error(err);
+      return res.status(500).send("Error logging out");
+    }
+    // Optionally clear the session cookie here, if it's not cleared automatically
+    res.clearCookie('connect.sid'); // Adjust the cookie name based on your session config
+    res.redirect('/login'); // Redirect the user after successfully destroying the session
+  });
+  // Removed the res.render call
+});
 
 
 
