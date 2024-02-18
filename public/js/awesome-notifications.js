@@ -1,10 +1,9 @@
 let notifier;
 
-// We initialize the AWN notifier after the library has loaded
+//placed in a domcontentloaded to create scope around the notifier and other variables and identifiers in the function 
 document.addEventListener('DOMContentLoaded', () => {
   notifier = new AWN({
     maxNotifications: 6,
-    // The rest of your global options...
   });
 
   fetchAndDisplayNotifications();
@@ -16,10 +15,9 @@ async function fetchAndDisplayNotifications() {
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
     const notifications = await response.json();
-    const today = new Date(); // Today's date for comparison
+    const today = new Date(); 
 
     notifications.forEach(notification => {
-      // Check if notification should be displayed today
       if (shouldDisplayNotification(notification, today)) {
         displayNotification(notification);
       }
@@ -30,29 +28,22 @@ async function fetchAndDisplayNotifications() {
 }
 
 function shouldDisplayNotification(notification, today) {
-// Check for "onReopen" type - always display these notifications
 if (notification.notificationType === 'onReopen') {
   return true;
 }
 
-// Check for "specificDay" type
 if (notification.notificationType === 'specificDay' && notification.specificDate) {
-  // Convert specificDate to Date object for comparison, if not already done
   if (typeof notificationDate === 'string') {
     notificationDate = new Date(notification.specificDate);
   }
-  // Check if the specificDate is today
   return notificationDate.toDateString() === today.toDateString();
 }
 
-// Check for "dayOfWeek" type
 if (notification.notificationType === 'dayOfWeek' && notification.dayOfWeek) {
-  const dayOfWeekToday = today.toLocaleString('en-US', { weekday: 'long' }); // e.g., "Monday"
-  // Check if today is the specified day of the week
+  const dayOfWeekToday = today.toLocaleString('en-US', { weekday: 'long' }); 
   return notification.dayOfWeek === dayOfWeekToday;
 }
 
-// Default to not displaying the notification
 return false;
 }
 

@@ -17,23 +17,23 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    console.log('Login attempt received', req.body); // Log the incoming request body to see what username/password is being attempted.
+    console.log('Login attempt received', req.body); 
   
     try {
       const userData = await User.findOne({ where: { username: req.body.username } });
-      console.log('User lookup:', userData ? 'User found' : 'User not found'); // Log whether the user was found.
+      console.log('User lookup:', userData ? 'User found' : 'User not found'); 
   
       if (!userData) {
-        console.log('No user data found for username:', req.body.username); // More specific log if user not found.
+        console.log('No user data found for username:', req.body.username); 
         res.status(400).json({ message: 'Account not found, please try again' });
         return;
       }
   
       const validPassword = await userData.checkPassword(req.body.password);
-      console.log('Password check:', validPassword ? 'Valid password' : 'Invalid password'); // Log the result of the password check.
+      console.log('Password check:', validPassword ? 'Valid password' : 'Invalid password'); 
   
       if (!validPassword) {
-        console.log('Invalid password for username:', req.body.username); // More specific log if password check fails.
+        console.log('Invalid password for username:', req.body.username); 
         res.status(400).json({ message: 'Invalid password, please try again' });
         return;
       }
@@ -42,12 +42,12 @@ router.post('/login', async (req, res) => {
         req.session.user_id = userData.id;
         req.session.logged_in = true;
         
-        console.log('Login successful for user:', req.body.username); // Log successful login.
+        console.log('Login successful for user:', req.body.username); 
         res.json({ user: userData, message: 'You are now logged in!' });
       });
   
     } catch (err) {
-      console.error('Login error:', err); // Log any errors that occur during the login process.
+      console.error('Login error:', err); 
       res.status(500).json({ message: 'Error logging in', error: err.message });
     }
   });
