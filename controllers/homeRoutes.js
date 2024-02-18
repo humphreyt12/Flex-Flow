@@ -167,11 +167,10 @@ router.get('/dietplans', (req, res) => {
 
 router.get('/mynotifications', (req, res) => {
   console.log('About to render notifications');
-  res.render('mynotifications'); // Example without using a layout
+  res.render('mynotifications'); 
 });
 
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
     res.redirect('/homepage');
     return;
@@ -183,29 +182,12 @@ router.get('/login', (req, res) => {
 router.get('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      // Handle error
       console.error(err);
       return res.status(500).send("Error logging out");
     }
-    // Optionally clear the session cookie here, if it's not cleared automatically
-    res.clearCookie('connect.sid'); // Adjust the cookie name based on your session config
-    res.redirect('/login'); // Redirect the user after successfully destroying the session
+    res.clearCookie('connect.sid'); 
+    res.redirect('/login'); 
   });
-  // Removed the res.render call
 });
-
-
-
- 
-
-
-//If the user dose not have a login, redirect the page for the user to signup
-// router.get('/signUp', (req, res) => {
-//   if (req.session.logged_in) {
-//     res.redirect('/homepage');
-//     return;
-//   }
-//   res.render('signUp');
-// });
 
 module.exports = router;
