@@ -2,29 +2,6 @@ const router = require('express').Router();
 const { Workout } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-//GET request for Workout
-router.get('/', async (req, res) => {
-    try {
-      // Get all workouts and JOIN with user data
-      const workoutData = await Workout.findAll({
-        include: [
-          {
-            model: User,
-            attributes: ['name'],
-          },
-        ],
-      });
-  // Serialize data so the template can read it
-  const workouts = workoutData.map((workout) => workout.get({ plain: true }));
-  // Pass serialized data and session flag into template
-  res.render('myworkout',{ 
-    workouts,
-    logged_in: req.session.logged_in
-  });
-  } catch (err) {
-  res.status(500).json(err);
-  }
-  });
 
 //POST request for new Workout
 router.post('/', withAuth, async (req, res) => {
@@ -60,5 +37,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 module.exports = router;

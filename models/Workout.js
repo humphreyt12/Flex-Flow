@@ -11,11 +11,11 @@ Workout.init(
         primaryKey: true,
         autoIncrement: true
      },
-     workout: {
+     workout_name: {
         type: DataTypes.STRING,
         allowNull: false
      },
-     
+   
      date: {
       type: DataTypes.DATE,
       allowNull: false,

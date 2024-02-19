@@ -1,0 +1,42 @@
+
+
+    <!-- Main Container for Diet Plan Creation and Listing -->
+    <div class="container justify-center mx-auto p-4">
+        <!-- Diet Plan Creation Form -->
+        <div class="my-2 text-center">
+            <h2 class="text-4xl font-semibold text-gray-800">Create Your Diet</h2>
+                    <p class="text-gray-600 mt-3">Click calendar and clock icons.
+                    </p>
+            <form class="form dietPlanForm" class="grid gap-x-4 container px-96 justify-center grid-cols-6 ">
+                <div class="form-group">
+                    <input type="time" id="mealTime" class="form-input border mt-2 px-9 py-3 col-start-2 col-span-2  rounded" placeholder="Select Date">
+                    <input type="date" id="mealDate" class="form-input border mt-2 px-9 py-3 col-start-4 rounded " placeholder="Select Date">
+                    <input type="text" id="mealName" class="form-input border col-start-2 col-span-4 mt-2  hover:bg-gray-200 focus:bg-white px-5 py-3 rounded" placeholder="Meal Name">
+                    <button type="submit" class="bg-gradient-to-r from-black to-blue-600 text-white px-6 py-2 rounded hover:from-blue-600 hover:to-black w-60">Add Meal</button>
+                </div>
+            </form>
+        </div>
+
+           <!-- Scheduled Diet List -->
+    {{#if diets.length}}
+    <div class="dietPlansList my-8 text-center">
+        <h2 class="text-4xl col-span-5 font-semibold text-gray-800">Scheduled Diet</h2>
+        <div  class="mt-4 grid grid-cols-6 space-y-2 ">
+                
+                    {{#each diets as |diet|}}
+                <div class="dietPlansList text-black font-semibold text-2xl bg-gradient-to-tl  from-gray-300  to-white border col-start-3 col-span-2 border-grey-500 rounded-xl  ">
+                          <h3>Meal:{{this.mealName}}</h3>
+                          <p>Date:{{format_date this.mealDate}}</p>
+                          <p>Time:{{this.mealTime}}</p>
+          <button class="delete-btn mb-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded" data-id="{{diet.id}}">Delete</button>
+                    {{/each}}
+                 </div>
+                    {{else}}
+                </div>
+                {{/if}}
+        </div>
+    
+
+
+    <script src="/js/mydiet.js"></script>
+

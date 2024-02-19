@@ -1,9 +1,23 @@
 [
     {
-        "workout": "Test Workout",
+        "workout_name": "Test Workout",
         "date": "2/8/2024",
         "time": "3:52",
         "user_id": 1
+    
+    },
+    {
+        "workout_name": "Testing Workout",
+        "date": "2/7/2024",
+        "time": "3:42",
+        "user_id": 2
+    
+    }, 
+    {
+        "workout_name": "Tester Workout",
+        "date": "2/10/2024",
+        "time": "3:57",
+        "user_id": 3
     
     }
 ]

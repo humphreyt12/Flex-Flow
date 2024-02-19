@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Flow Workout Manager</title>
+    <!-- Including Tailwind CSS from CDN -->
     <link rel="stylesheet" href="/src/all.css"></link>
     <link rel="stylesheet" href="/src/notifs.css"></link>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
@@ -10,6 +12,7 @@
     <script src="/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/awesome-notifications@latest/dist/index.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+
     
 <script>
   new Promise((resolve, reject) => {
@@ -31,23 +34,26 @@
       )    
   });
   
-</script>
+</script>    
+
 </head>
 
 <body class="w-full h-screen" style= "background-image: url('assets/background image for login page.svg'); background-size: cover; background-position: center;"> 
-  <header>
+    <header>
         <nav class="shadow-md flex justify-between items-center py-1 px-6">
             <span class="top-0 mt-2 left-0 flex h-12">
                 <img src="/assets/transparent flex flow logo for login page.png" alt="Flex Flow Workout Manager" class=" w-100">
             </span>
-                   <!-- Navigation -->
-       <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white  bg-gradient-to-r from-blue-600 hover:from-gray-400 hover:to-blue-700 to-black  focus:outline-none font-medium rounded-lg text-base top-0 px-12 mb-3 mr-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button">
+            
+            {{!-- {{#if logged_in}} --}}
+            <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white  bg-gradient-to-r from-blue-600 hover:from-gray-400 hover:to-blue-700 to-black  focus:outline-none font-medium rounded-lg text-base top-0 px-12 mb-3 mr-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button">
     <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
     </svg>
-        </button>
-     </nav>
-<div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+</button>
+{{!-- {{/if}} --}}
+        </nav>
+        <div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
     <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
         <li>
             <a href="/homepage" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
@@ -56,71 +62,21 @@
             <a href="/mynotifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
         </li>
         <li>
-            <a href="/logout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
+            <a href="/logout" id="logoutButton" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
         </li>
     </ul>
 </div>
     </header>
+   
     <main>
         {{{body}}}
     </main>
 
+  {{#if logged_in}}
 
+  <script src="/js/dropdown.js"></script>
+    <script src="/js/logout.js"></script>
 
-<script src="/js/dropdown.js"></script>
-    {{!-- <footer class="flex items-center space-x-72 mt-14 justify-center">
-          
-        <a href="/signup" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Create Account</a>
-        <a href="/help" class="text-blue-600 text-lg hover:text-blue-800 transition duration-300">Need Help?</a>
-    </footer> --}}
-    {{!-- <!-- Container -->
-   
-
-<div class="space-y-4">
-        <!-- Welcome Text -->
-        <div class="relative flex flex-col items-center justify-center mt-14 mb-16">
-            <ul class="text-5xl text-center font-bold mb-4"><li>Welcome Back</li> <li class="text-5xl mb-3 font-medium">Our Gym Member!</li></ul>
-          <ul><p class=" text-1xl text-gray-600"><li class="text-center ">Log in to your account to access your personalized fitness journey.</li>
-            <li>If you don't have an account feel free to click Create Account to sign up Welcome!</li></p></ul>
-            
-        </div>
-        </div>
-
-        <!-- Form -->
-       <form class="form space-y-3 login-form">
-            <!-- Username Input -->
-            <div class="form-group flex flex-col items-center w-full justify-center">
-            <div class="relative">
-                <input type="text" id="username-login" class="login-input form-input block text-center px-36 py-4 rounded-full border drop-shadow-lg border-gray-600" placeholder="Username">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <span class="text-gray-500 sm:text-sm" aria-hidden="true">
-                        <!-- Username Icon -->
-                    </span>
-                </div>
-            </div>
-
-        </div>
-            <!-- Password Input -->
-            <div class="form-group flex flex-col items-center">
-            <div class="relative">
-                <input type="password" id="password-login" class="login-input form-input block text-center w-full px-36 py-4 rounded-full border border-gray-600" placeholder="Password">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <span class="text-gray-500 sm:text-sm" aria-hidden="true">
-                        <!-- Password Icon -->
-                    </span>
-                </div>
-            </div>
-
-            <!-- Login Button -->
-            <div class="form-group flex flex-col items-center">
-            <button type="submit" class="transition hover:ease-out shadow-lg drop-shadow-2xl shadow-blue-600 mt-10 w-full flex justify-center py-4 px-4 border text-sm font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700">
-                Login
-            </button>
-        </form>
-
-        <!-- Footer Links -->
-        
-            <div >
-         
-        </div>
-            </div> --}}
+{{/if}}
+</body>
+</html>

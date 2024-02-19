@@ -53,18 +53,15 @@ router.post('/login', async (req, res) => {
   });
   
 
-  router.post('/logout', (req, res) => {
-    console.log('Logout route hit');
-    req.session.destroy((err) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send('Could not log out, please try again.');
-      } else {
-        res.clearCookie('connect.sid');
-        res.send('Logged out successfully');
-      }
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
     });
-  });
+  } else {
+    res.status(404).end();
+  }
+});
 
 
 module.exports = router;

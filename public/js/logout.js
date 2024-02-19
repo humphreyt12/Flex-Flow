@@ -5,7 +5,7 @@
   // Define the logout function
   const logout = async (event) => {
     event.preventDefault(); 
-    console.log('Logout clicked'); /
+    console.log('Logout clicked'); 
 
     try {
       console.log('Preparing to send logout request'); 
@@ -32,4 +32,3 @@
   } else {
     console.error('Logout link not found'); 
   }
-

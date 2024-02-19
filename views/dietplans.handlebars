@@ -1,24 +1,10 @@
 
-<div id="dropdown" class="absolute mr-2 mb-2 right-0 z-10 hidden font-semibold bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-    <ul class="py-2 text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-        <li>
-            <a href="/homepage" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Homepage</a>
-        </li>
-        <li>
-            <a href="/mynotifications" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notifications</a>
-        </li>
-        <li>
-            <a href="/logout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</a>
-        </li>
-    </ul>
-</div>
-
     <!-- Main Container for Diet Plan Suggestions -->
     <div class="container mx-auto p-2 text-center">
         <h2 class="text-4xl font-semibold text-black">Diet Plan Suggestions</h2>
         <p class="text-xl text-gray-700 font-semibold underline mt-5">Click a diet plan to watch a helpful video on how to start your selected diet.</p>
 
-        <!-- Directly Displaying Diet Plans as Buttons -->
+        <!-- Displaying Diet Plans as Buttons -->
         <div class="grid grid-cols-1 gap-6 justify-items-center mt-6" >
             <a target = "_blank" href="https://www.youtube.com/watch?v=dp2USdjfpzE" class="flex items-center justify-center text-xl w-96 h-12 mb-4 p-2 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 text-white font-bold">Vegan Diet</a>
             <a target = "_blank" href="https://www.youtube.com/watch?v=AjAYl4K-Enw" class="flex items-center justify-center text-xl w-96 h-12 mb-4 p-2 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 text-white font-bold">Mediterranean Diet</a>
@@ -28,19 +14,4 @@
             <a target = "_blank" href="https://www.youtube.com/watch?v=ajWqRd3Ns7w" class="flex items-center justify-center text-xl w-96 h-12 mb-4 p-2 shadow-lg rounded-lg bg-gradient-to-r from-black to-blue-600 hover:from-red-700 hover:to-blue-800 text-white font-bold">Low-Carb Diet</a>
         </div>
     </div>
-
-    <script>
-
- 
-        // Get the button and the dropdown menu
-        const dropdownButton = document.getElementById('Dropdown');
-        const dropdownMenu = document.getElementById('dropdown');
-
-        // Add click event listener to the button
-        dropdownButton.addEventListener('click', function() {
-            // Toggle the 'hidden' class on the dropdown menu
-            dropdownMenu.classList.toggle('hidden');
-        });
-   
-</script>
 

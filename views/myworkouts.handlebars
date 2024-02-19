@@ -1,54 +1,38 @@
+
     <!-- Main Container -->
     <div class="container justify-center mx-auto p-4">
         <!-- Workout Scheduler -->
         <div class="my-2 text-center ">
-            <h2 class="text-4xl font-semibold text-gray-800">Schedule Your Workouts</h2>
+            <h2 class="text-4xl font-semibold text-gray-800">Schedule Your Workout</h2>
             <p class="text-gray-600 mt-2">Click calender and clock icons.</p>
             <form class="form scheduleForm" class="grid gap-x-4 container px-96 justify-center grid-cols-6 ">
                 <div class="form-group">
-                <input type="date" class="form-input border  mt-2  col-start-2 col-span-2 px-9 py-3 rounded" placeholder="Select Date">
-                <input type="time" class="form-input border mt-2  col-start-4 col-span-2 px-9 py-3 rounded" placeholder="Select Time">
-                <input type="text" class="form-input border col-start-2 col-span-4 mt-2  hover:bg-gray-200 focus:bg-white px-5 py-3 rounded" placeholder="Enter Your Workout">
+                <input type="time" id="workout-time" class="form-input border mt-2  col-start-4 col-span-2 px-9 py-3 rounded" placeholder="Select Time">
+                <input type="date" id="workout-date" class="form-input border  mt-2  col-start-2 col-span-2 px-9 py-3 rounded" placeholder="Select Date">
+                <input type="text" id="workout-name" class="form-input border col-start-2 col-span-4 mt-2  hover:bg-gray-200 focus:bg-white px-5 py-3 rounded" placeholder="Enter Your Workout">
                 <button type="submit" class="bg-gradient-to-r from-black to-blue-600 text-white px-6 py-2 rounded hover:from-blue-600 hover:to-black w-60">Schedule Workout</button>
                 </div>
             </form>
         </div>
-
-         <!-- Scheduled Workouts List -->
-    <div class="grid grid-cols-5 my-8 text-center">
+ 
+  <!-- scheduled Workouts List -->
+    {{#if workouts.length}}
+    <div class="scheduledWorkoutsList my-8 text-center">
         <h2 class="text-4xl col-span-5 font-semibold text-gray-800">Scheduled Workouts</h2>
-        <div id="scheduledWorkoutsList" class="mt-4 col-start-3">
-            {{#each scheduledWorkouts}}
-                <div class="text-black col-span-2 border">
-                    <div>Workout: {{this.workout}}</div>
-                    <div>Date: {{this.date}}</div>
-                    <div>Time: {{this.time}}</div>
-          <button class="delete-btn px-4 py-2 bg-red-500 text-white rounded">Delete</button>
+        <div  class="mt-4 grid grid-cols-6   space-y-2 ">
+
+            {{#each workouts as |workout|}}
+            
+                <div class="scheduledWorkoutsList text-black font-semibold text-2xl bg-gradient-to-tl  from-gray-300  to-white border col-start-3 col-span-2 border-grey-500 rounded-xl  ">
+                    <h3>Workout: {{this.workout_name}}</h3>
+                    <p>Date: {{format_date this.date}}</p>
+                    <p>Time: {{ this.time}}</p>
+          <button class="delete-btn mb-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded" data-id="{{workout.id}}">Delete</button>
                 </div>
-            {{else}}
-                <li class=" absolute left-1 right-1 text-center text-gray-600">No scheduled workouts yet.</li>
             {{/each}}
-        </div>
+          {{else}}
+                </div>
+    {{/if}}
     </div>
 
-<script>
-    // Wait for the DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the button and the dropdown menu
-        const dropdownButton = document.getElementById('Dropdown');
-        const dropdownMenu = document.getElementById('dropdown');
-
-        // Add click event listener to the button
-        dropdownButton.addEventListener('click', function() {
-            // Toggle the 'hidden' class on the dropdown menu
-            dropdownMenu.classList.toggle('hidden');
-        });
-    });
-</script>
-
     <script src="/js/myworkouts.js"></script>
-    <script src="/js/logout.js"></script>
-
-
-
-   

@@ -6,8 +6,6 @@ const userData = require('./userData.json');
 const workoutData = require('./workoutData.json');
 const dietData = require('./dietData.json');
 try {
-  // Your seeding logic here
-//Forcing the models and recreating their data
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
