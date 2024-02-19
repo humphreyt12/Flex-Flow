@@ -1,4 +1,4 @@
-document.addEventListener( function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Get the button and the dropdown menu
     const dropdownButton = document.getElementById('Dropdown');
     const dropdownMenu = document.getElementById('dropdown');

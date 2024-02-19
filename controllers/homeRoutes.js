@@ -164,4 +164,16 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error logging out");
+    }
+    res.clearCookie('connect.sid'); 
+    res.redirect('/login'); 
+  });
+});
+
+
 module.exports = router;
