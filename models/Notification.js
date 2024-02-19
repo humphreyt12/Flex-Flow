@@ -19,26 +19,25 @@ Notification.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    // Include other fields as necessary, for example:
     notificationType: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     dayOfWeek: {
       type: DataTypes.STRING,
-      allowNull: true, // Only needed for specificDay notification types
+      allowNull: true, 
     },
     specificDate: {
       type: DataTypes.DATEONLY,
-      allowNull: true, // Only needed for specificDate notification types
+      allowNull: true, 
     },
     notificationColor: {
       type: DataTypes.STRING,
-      allowNull: false, // Assuming color is optional
+      allowNull: false,
     },
     notificationIcon: {
       type: DataTypes.STRING,
-      allowNull: false, // Assuming icon is optional
+      allowNull: false, 
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -52,7 +51,7 @@ Notification.init(
   {
     sequelize,
     modelName: 'notification',
-    timestamps: true, // Add createdAt and updatedAt timestamps
+    timestamps: true, 
     freezeTableName: true,
     underscored: true,
   }

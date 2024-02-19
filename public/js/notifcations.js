@@ -92,7 +92,7 @@ function saveFormData() {
   })
   .then(data => {
     console.log('Success:', data);
-    window.location.reload(); // Reload the page to show the updated notifications list
+    window.location.reload(); 
   })
   .catch((error) => {
     console.error('Error:', error);
@@ -108,9 +108,8 @@ function getIconLabel(iconPath) {
     "/assets/water.png": "Water Bottle",
     "/assets/stretch.png": "Stretch",
     "/assets/music.png": "Music",
-    // Add more mappings as needed
   };
-  return iconMap[iconPath] || "Unknown Icon"; // Default case if the iconPath is not in the map
+  return iconMap[iconPath] || "Unknown Icon"; 
 }
 
 
@@ -127,13 +126,12 @@ async function fetchAndRenderNotifications() {
 
     notifications = notifications.map(notification => ({
       ...notification,
-      notificationIcon: getIconLabel(notification.notificationIcon) // Replace path with label
+      notificationIcon: getIconLabel(notification.notificationIcon)
     }));
 
     if (notifications.length !== 0) {
       console.log('Processing and displaying notifications');
 
-      // Directly defining the Handlebars template string within the JavaScript
       const templateString = `
       {{#each notifications}}
 <div class="notification bg-white shadow-lg rounded-lg p-6 mb-4" data-id="{{this.id}}">
@@ -253,7 +251,7 @@ async function fetchAndRenderNotifications() {
 
               if (!response.ok) throw new Error('Failed to delete notification');
         console.log('Notification deleted successfully');
-        notificationDiv.remove(); // Remove the notification from the DOM
+        notificationDiv.remove(); 
       } catch (error) {
         console.error('Error deleting notification:', error);
       }
