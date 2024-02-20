@@ -33,8 +33,7 @@ As a user I want a simple and easy to use app to log my workouts so I can keep t
 ## Website-Link
 Click the Heroku app link to view the application's website. 
 
-https://afternoon-ocean-20932-c0392ecfa34c.herokuapp.com/
-
+(https://workoutmanagerflexflow-c7e5c5afbfc1.herokuapp.com/login)
 
 ## Presentation
 Click the link below to view our group presentation.
